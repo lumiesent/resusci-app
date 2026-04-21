@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Symulator 999</title>
+    <link rel="stylesheet" href="/src/style.css">
+  </head>
+  <body>
+    <div id="app">
+      
+      <div id="menu-screen">
+        <header>Wybierz Scenariusz</header>
+        
+        <div id="loading-status" style="text-align: center; padding: 20px; color: var(--brand-cream);">
+          Ładowanie sztucznej inteligencji...
+        </div>
+        
+        <div class="scenario-list hidden" id="scenario-list">
+          
+          <button class="scenario-card" data-scenario="emergency">
+            <div class="scenario-icon">❤️</div>
+            <div class="scenario-info">
+              <h3>Zatrzymanie krążenia</h3>
+              <p>Pacjent nieprzytomny, brak oddechu.</p>
+            </div>
+          </button>
+          
+          <button class="scenario-card" data-scenario="allergy">
+            <div class="scenario-icon">🐝</div>
+            <div class="scenario-info">
+              <h3>Wstrząs anafilaktyczny</h3>
+              <p>Użądlenie, duszności, opuchlizna.</p>
+            </div>
+          </button>
+          
+        </div>
+      </div>
+
+      <div id="chat-screen" class="hidden">
+        <header class="chat-header">
+          <button id="back-btn">← Wróć</button>
+          <span>Numer 112</span>
+          <div style="width: 60px;"></div> 
+        </header>
+        
+        <div id="chat-window"></div>
+        
+        <div id="hint-box">
+          <strong>Wskazówka:</strong> <span id="hint-text">Czekam na połączenie...</span>
+        </div>
+        
+        <div id="input-area">
+          <button id="mic-btn" title="Mów">Mikrofon</button>
+          <input type="text" id="user-input" placeholder="Napisz odpowiedź..." autocomplete="off"/>
+          <button id="send-btn">Wyślij</button>
+        </div>
+      </div>
+
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
