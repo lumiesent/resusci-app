@@ -86,6 +86,52 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'Jest bardzo blada', 'intent.allergy.pale_skin')
   nlp.addDocument('pl', 'Wygląda strasznie biało', 'intent.allergy.pale_skin')
 
+  /** Scenariusz 3: Ból Brzucha
+   * ==================================
+   * --- INTENCJE DOT. BÓLU BRZUCHA ---
+   * ==================================
+   **/ 
+
+  nlp.addDocument('pl', 'Dzień dobry, mój mąż ma potworny ból brzucha.', 'intent.stomach.report');
+  nlp.addDocument('pl', 'Zaczęło się nagle godzinę temu, zwija się na podłodze.', 'intent.stomach.report');
+
+  // Pytanie o przytomność
+  nlp.addDocument('pl', 'Tak, krzyczy z bólu, jest cały spocony.', 'intent.stomach.conscious');
+  nlp.addDocument('pl', 'Jest przytomny', 'intent.stomach.conscious');
+  nlp.addDocument('pl', 'Nie, stracił przytomność', 'intent.stomach.unconscious');
+  nlp.addDocument('pl', 'Zemdlał, nie ma z nim kontaktu', 'intent.stomach.unconscious');
+
+  // Pytanie o Oddech
+  nlp.addDocument('pl', 'Tak, oddycha', 'intent.stomach.breathing');
+  nlp.addDocument('pl', 'Klatka piersiowa się unosi', 'intent.stomach.breathing');
+  nlp.addDocument('pl', 'Nie oddycha', 'intent.stomach.no_breathing');
+  nlp.addDocument('pl', 'Nie słyszę oddechu', 'intent.stomach.no_breathing');
+
+  // Pytanie o Ból
+  nlp.addDocument('pl', 'Boli go nad pępkiem, mówi, że ból promieniuje mu aż do pleców, pod łopatkę.', 'intent.stomach.pain_location');
+  nlp.addDocument('pl', 'Boli go cały brzuch i promieniuje na plecy', 'intent.stomach.pain_location');
+
+  // Pytanie o Wymioty
+  nlp.addDocument('pl', 'Tak, raz zwymiotował, ale to była tylko treść żołądkowa, bez krwi.', 'intent.stomach.vomiting');
+  nlp.addDocument('pl', 'Nie, nie wymiotuje.', 'intent.stomach.no_vomiting');
+
+  // Pytanie o Historia medyczna
+  nlp.addDocument('pl', 'Choruje na serce i ma nadciśnienie. Nigdy nie miał operacji.', 'intent.stomach.medical_history');
+  nlp.addDocument('pl', 'Na nic nie choruje i nie miał operacji', 'intent.stomach.no_medical_history');
+  nlp.addDocument('pl', 'Jest w pełni zdrowy', 'intent.stomach.no_medical_history');
+
+  // Pytanie o Skóra
+  nlp.addDocument('pl', 'Jest bardzo blady i ma zimny pot na czole.', 'intent.stomach.pale_skin');
+  nlp.addDocument('pl', 'Skóra wygląda normalnie', 'intent.stomach.normal_skin');
+
+  // Pytanie o Leki doraźne (przed telefonem)
+  nlp.addDocument('pl', 'Dałem mu tabletkę rozkurczową, ale w ogóle nie pomogła.', 'intent.stomach.prior_medication');
+  nlp.addDocument('pl', 'Nic mu nie dawałem', 'intent.stomach.no_prior_medication');
+
+  // Pytanie o Leki stałe
+  nlp.addDocument('pl', 'Tak, ale od kilku dni nie bierze.', 'intent.stomach.regular_medication_stopped');
+  nlp.addDocument('pl', 'Bierze na stałe leki na serce', 'intent.stomach.regular_medication_takes');
+  
   await nlp.train();
   return nlp;
 }
