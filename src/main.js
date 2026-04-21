@@ -3,14 +3,26 @@
  * * Ten plik pełni rolę "dyrygenta" – łączy interfejs użytkownika (HTML/CSS),
  * logikę stanów (XState z scenario.js) oraz rozpoznawanie języka (NLP z nlpSetup.js).
  */
-
 import { createActor } from 'xstate';
 // IMPORT LOGIKI: Tutaj musisz dodać importy, gdy stworzysz nowe maszyny i słowniki dialogów.
 import { 
-  emergencyMachine, scenarioDialog as emergencyDialog, 
-  allergyMachine, allergyDialog 
+  allergyMachine, allergyDialog
 } from './scenario.js';
 import { setupNLP } from './nlpSetup.js';
+
+
+
+// --- REJESTR SCENARIUSZY ---
+/**
+ * TO JEST KLUCZOWE MIEJSCE:
+ * Jeśli dodajesz nowy scenariusz (np. 'fire'), musisz go tutaj zarejestrować.
+ * Klucze ('emergency', 'allergy') muszą odpowiadać wartościom 'data-scenario' w HTML.
+ */
+const scenarioRegistry = {
+  'allergy': { machine: allergyMachine, dialog: allergyDialog }
+};
+
+
 
 // --- REFERENCJE DO ELEMENTÓW UI ---
 // Pobieramy elementy z index.html, aby móc nimi manipulować (np. ukrywać/pokazywać ekrany).
@@ -26,13 +38,19 @@ const sendBtn = document.getElementById('send-btn');
 const micBtn = document.getElementById('mic-btn');
 const hintText = document.getElementById('hint-text');
 
+
+
 // --- ZMIENNE STANU APLIKACJI ---
 let nlpEngine;       // Przechowuje wytrenowany model sztucznej inteligencji NLP.js.
 let scenarioActor;   // "Aktor" XState – instancja aktualnie uruchomionej maszyny stanów.
 let lastStateValue = null; // Pomocnicza zmienna, by nie powtarzać komunikatów w tym samym stanie.
 
+
+
 // --- SYNTEZA MOWY (Bot mówi do nas) ---
+
 const synth = window.speechSynthesis;
+
 function speak(text) {
   // Przerwij poprzednią mowę, jeśli jeszcze trwa
   if (synth.speaking) synth.cancel();
@@ -42,7 +60,10 @@ function speak(text) {
   synth.speak(utterance);
 }
 
+
+
 // --- ROZPOZNAWANIE MOWY (My mówimy do bota) ---
+
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = SpeechRecognition ? new SpeechRecognition() : null;
 
@@ -64,6 +85,8 @@ if (recognition) {
   // Jeśli przeglądarka nie wspiera SpeechRecognition, ukrywamy przycisk mikrofonu
   micBtn.style.display = 'none';
 }
+
+
 
 // --- FUNKCJA POMOCNICZA: DODAWANIE WIADOMOŚCI DO OKNA CZATU ---
 function addMessage(text, sender) {
@@ -87,16 +110,7 @@ function addMessage(text, sender) {
   chatWindow.scrollTop = chatWindow.scrollHeight;
 }
 
-// --- REJESTR SCENARIUSZY ---
-/**
- * TO JEST KLUCZOWE MIEJSCE:
- * Jeśli dodajesz nowy scenariusz (np. 'fire'), musisz go tutaj zarejestrować.
- * Klucze ('emergency', 'allergy') muszą odpowiadać wartościom 'data-scenario' w HTML.
- */
-const scenarioRegistry = {
-  'emergency': { machine: emergencyMachine, dialog: emergencyDialog },
-  'allergy': { machine: allergyMachine, dialog: allergyDialog }
-};
+
 
 let currentDialog = null; // Tu przechowujemy słownik tekstów dla wybranego scenariusza
 
@@ -112,6 +126,8 @@ function updateUIFromState(state) {
     hintText.textContent = dialog.hint; // Aktualizacja paska podpowiedzi
   }
 }
+
+
 
 // --- PRZETWARZANIE WEJŚCIA UŻYTKOWNIKA (NLP) ---
 async function handleUserInput() {
@@ -136,6 +152,8 @@ async function handleUserInput() {
   // Jeśli maszyna w obecnym stanie posiada przejście (on:) dla tej intencji, zmieni stan.
   scenarioActor.send({ type: response.intent });
 }
+
+
 
 // --- URUCHAMIANIE KONKRETNEGO SCENARIUSZA ---
 function startScenario(scenarioId) {
@@ -182,6 +200,8 @@ function startScenario(scenarioId) {
   });
 }
 
+
+
 // --- POWRÓT DO MENU ---
 function exitScenario() {
   if (scenarioActor) {
@@ -193,6 +213,8 @@ function exitScenario() {
   chatScreen.classList.add('hidden');
   menuScreen.classList.remove('hidden');
 }
+
+
 
 // --- INICJALIZACJA APLIKACJI (START) ---
 async function initApp() {
