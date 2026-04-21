@@ -138,6 +138,26 @@ async function handleUserInput() {
   addMessage(text, 'user');
   userInput.value = '';
 
+  // Pobieramy aktualny stan maszyny
+  const currentState = scenarioActor.getSnapshot().value;
+
+  // Omijamy NLP jeśli jesteśmy w stanie 'ask_location'. 
+  // Zamiast tego od razu wysyłamy tekst jako adres, aby bot nie powiedział "Nie zrozumiałem".
+  if (currentState === 'ask_location') {
+    scenarioActor.send({ 
+      type: 'USER_PROVIDED_LOCATION', 
+      text: text // Przekazujemy oryginalny tekst do funkcji assign!
+    });
+    return; // Zatrzymujemy dalsze wykonywanie funkcji
+  }
+  else if (currentState === 'ask_which_medicine') {
+    scenarioActor.send({ 
+      type: 'USER_PROVIDED_MEDICINE', 
+      text: text // Przekazujemy oryginalny tekst do funkcji assign!
+    });
+    return; // Zatrzymujemy dalsze wykonywanie funkcji
+  }
+
   // 2. Prześlij tekst do silnika NLP, aby odgadnąć intencję (Intent)
   const response = await nlpEngine.process('pl', text);
   
@@ -149,8 +169,11 @@ async function handleUserInput() {
   }
   
   // 4. WYŚLIJ INTENCJĘ DO MASZYNY STANÓW.
-  // Jeśli maszyna w obecnym stanie posiada przejście (on:) dla tej intencji, zmieni stan.
-  scenarioActor.send({ type: response.intent });
+  // Przekazujemy również oryginalny tekst, na wypadek gdyby jakaś inna intencja chciała go zapisać
+  scenarioActor.send({ 
+    type: response.intent,
+    text: text 
+  });
 }
 
 

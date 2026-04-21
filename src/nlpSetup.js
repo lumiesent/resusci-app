@@ -47,14 +47,44 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'Ugryzła mnie pszczoła i puchnę', 'intent.allergy.report');
   nlp.addDocument('pl', 'Dusi się po zjedzeniu orzeszków', 'intent.allergy.report');
   nlp.addDocument('pl', 'Ktoś ma wstrząs anafilaktyczny', 'intent.allergy.report');
+  nlp.addDocument('pl', 'Poszkodowana zjadła orzechy i zaczyna się dusić.', 'intent.allergy.report');
 
-  // Pytanie o adrenalinę (EpiPen)
-  nlp.addDocument('pl', 'Nie, nie mamy żadnego zastrzyku', 'intent.allergy.no_epipen');
-  nlp.addDocument('pl', 'Tak, ma w plecaku adrenalinę', 'intent.allergy.has_epipen');
+  // Pytanie o przytomność
+  nlp.addDocument('pl', 'Tak, osoba jest przytomna', 'intent.allergy.conscious');
+  nlp.addDocument('pl', 'Osoba jest nieprzytomna', 'intent.allergy.unconscious');
 
+  // Pytanie o oddech
+  nlp.addDocument('pl', 'Tak, oddycha', 'intent.allergy.breathing');
+  nlp.addDocument('pl', 'Nie, nie czuję oddechu', 'intent.allergy.no_breathing');
 
+  // Pytanie o stan oddechu
+  nlp.addDocument('pl', 'Coraz ciężej mu złapać oddech', 'intent.allergy.breathing_difficult');
+  nlp.addDocument('pl', 'Oddycha normalnie', 'intent.allergy.breathing_normal');
 
-  
+  // Pytanie o obrzęki
+  nlp.addDocument('pl', 'Poszkodowany ma obrzęki na gardle', 'intent.allergy.swelling')
+  nlp.addDocument('pl', 'Nie widzę żadnych obrzęków', 'intent.allergy.no_swelling')
+
+  // Pytanie o adrealinę
+  nlp.addDocument('pl', 'Tak, wiemy o uczuleniu i mamy adrealinę', 'intent.allergy.adrealine')
+  nlp.addDocument('pl', 'Tak, wiemy o alergii ale nie mamy adrealiny', 'intent.allergy.no_adrealine')
+  nlp.addDocument('pl', 'To pierwszy taki przypadek', 'intent.allergy.no_adrealine')
+
+  // Pytanie o wysypkę
+  nlp.addDocument('pl', 'Tak, na klatce piersiowej pojawiły się czerwone plamy', 'intent.allergy.rash')
+  nlp.addDocument('pl', 'Nie, nie widzę żadnych miejsc z wysypką', 'intent.allergy.no_rash')
+
+  // Pytanie o leki
+  nlp.addDocument('pl', 'Podałem jej tabletkę leku na alergię', 'intent.allergy.medicines')
+  nlp.addDocument('pl', 'Dzisiaj nie przyjmowała żadnych leków', 'intent.allergy.no_medicines')
+
+  // Pytanie o skórę
+  nlp.addDocument('pl', 'Wygląda dobrze, nie widzę żadnych zmian', 'intent.allergy.normal_skin')
+  nlp.addDocument('pl', 'Skóra wygląda normalnie', 'intent.allergy.normal_skin')
+  nlp.addDocument('pl', 'Mocno się spociła', 'intent.allergy.sweaty_skin')
+  nlp.addDocument('pl', 'Leci z niej pot', 'intent.allergy.sweaty_skin')
+  nlp.addDocument('pl', 'Jest bardzo blada', 'intent.allergy.pale_skin')
+  nlp.addDocument('pl', 'Wygląda strasznie biało', 'intent.allergy.pale_skin')
 
   await nlp.train();
   return nlp;
