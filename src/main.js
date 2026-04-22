@@ -8,7 +8,8 @@ import { createActor } from 'xstate';
 import { 
   allergyMachine, allergyDialog,
   stomachMachine, stomachDialog,
-  headacheMachine, headacheDialog
+  headacheMachine, headacheDialog,
+  backpainMachine, backpainDialog
 } from './scenario.js';
 import { setupNLP } from './nlpSetup.js';
 
@@ -23,7 +24,8 @@ import { setupNLP } from './nlpSetup.js';
 const scenarioRegistry = {
   'allergy': { machine: allergyMachine, dialog: allergyDialog },
   'stomach': { machine: stomachMachine, dialog: stomachDialog },
-  'headache': { machine: headacheMachine, dialog: headacheDialog }
+  'headache': { machine: headacheMachine, dialog: headacheDialog },
+  'backpain': { machine: backpainMachine, dialog: backpainDialog }
 };
 
 
@@ -166,7 +168,12 @@ async function handleUserInput() {
   const response = await nlpEngine.process('pl', text);
   
   // 3. Obsługa przypadku, gdy AI nic nie zrozumiało (Score poniżej progu lub intent 'None')
-  if (response.intent === 'None') {
+  if (response.intent === 'None' && currentState == "ask_consciousness") {
+    addMessage('Nie zrozumiałem dokładnie. Spróbuj ująć to inaczej.', 'bot');
+    speak('Nie zrozumiałem dokładnie. Spróbuj ująć to inaczej.');
+    return;
+  }
+  else if (response.intent === 'None' && currentState == "ask_breathing") {
     addMessage('Nie zrozumiałem dokładnie. Spróbuj ująć to inaczej.', 'bot');
     speak('Nie zrozumiałem dokładnie. Spróbuj ująć to inaczej.');
     return;

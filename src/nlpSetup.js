@@ -187,6 +187,67 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'Często ją boli głowa i to wygląda tak samo jak zawsze.', 'intent.headache.history_similar');
   nlp.addDocument('pl', 'Nigdy wcześniej nie było takich problemów, to pierwszy raz.', 'intent.headache.no_history');
   
+  /** Scenariusz 5: Ból Kręgosłupa, Pleców
+   * ===============================================
+   * --- INTENCJE DOT. BÓLU KRĘGOSŁUPA I PLECÓW ---
+   * ===============================================
+   **/ 
+
+  // Zgłoszenie
+  nlp.addDocument('pl', 'Dzień dobry, osoba poszkodowana nagle upadła i wyje z bólu, mówi że pękają jej plecy.', 'intent.backpain.report');
+  nlp.addDocument('pl', 'Poszkodowany ma potworny ból kręgosłupa, nie może się ruszyć.', 'intent.backpain.report');
+
+  // Przytomność
+  nlp.addDocument('pl', 'Tak, leży na podłodze, jest bardzo blady i spocony.', 'intent.backpain.conscious');
+  nlp.addDocument('pl', 'Tak, leży przytomna.', 'intent.backpain.conscious');
+  nlp.addDocument('pl', 'Nie, stracił przytomność, nie reaguje.', 'intent.backpain.unconscious');
+
+  // Oddech (Gałąź nieprzytomny)
+  nlp.addDocument('pl', 'Tak, klatka się unosi, oddycha.', 'intent.backpain.breathing');
+  nlp.addDocument('pl', 'Nie słyszę oddechu, nie oddycha.', 'intent.backpain.no_breathing');
+
+  // 1. Od kiedy boli?
+  nlp.addDocument('pl', 'Boli od jakiś dwóch godzin.', 'intent.backpain.since_when');
+  nlp.addDocument('pl', 'Zaczęło się nagle przed chwilą.', 'intent.backpain.since_when');
+
+  // 2. Okoliczności
+  nlp.addDocument('pl', 'To stało się po podniesieniu ciężkiego kartonu.', 'intent.backpain.circumstances');
+  nlp.addDocument('pl', 'Po prostu siedziała i nagle poczuła rozcinający ból.', 'intent.backpain.circumstances');
+
+  // 3. Charakter bólu
+  nlp.addDocument('pl', 'Mówi, że to jest ból rozlany, pulsujący.', 'intent.backpain.pain_character');
+  nlp.addDocument('pl', 'Czuje ostry ucisk i kłucie.', 'intent.backpain.pain_character');
+  nlp.addDocument('pl', 'Ból jest stały i bardzo piekący.', 'intent.backpain.pain_character');
+
+  // 4. Promieniowanie bólu
+  nlp.addDocument('pl', 'Promieniuje w dół do pachwiny i nóg.', 'intent.backpain.pain_radiation');
+  nlp.addDocument('pl', 'Ból idzie do klatki piersiowej i ramion.', 'intent.backpain.pain_radiation');
+  nlp.addDocument('pl', 'Boli tylko w jednym miejscu, nigdzie nie promieniuje.', 'intent.backpain.no_radiation');
+
+  // 5. Skala bólu
+  nlp.addDocument('pl', 'Mówi, że to 10 na 10, najgorszy w życiu.', 'intent.backpain.pain_severity');
+  nlp.addDocument('pl', 'W skali do dziesięciu to jakieś osiem.', 'intent.backpain.pain_severity');
+
+  // 6. Neurologia (Ruch, czucie, drętwienie)
+  nlp.addDocument('pl', 'Nogi ma jak z waty i zaczynają drętwieć, słabo czuje dotyk.', 'intent.backpain.neurology_issues');
+  nlp.addDocument('pl', 'Może ruszać nogami i ma pełne czucie, nic nie drętwieje.', 'intent.backpain.no_neurology_issues');
+
+  // 7. Bezwiedne oddanie moczu/stolca
+  nlp.addDocument('pl', 'Tak, niestety popuścił mocz i stolec bezwiednie.', 'intent.backpain.involuntary_excretion');
+  nlp.addDocument('pl', 'Nie, nic takiego się nie stało.', 'intent.backpain.no_involuntary_excretion');
+
+  // 8. Problemy z oddawaniem moczu (krew)
+  nlp.addDocument('pl', 'Ma problemy z sikaniem, w moczu była krew.', 'intent.backpain.urination_problems');
+  nlp.addDocument('pl', 'Oddaje mocz normalnie, bez bólu i krwi.', 'intent.backpain.no_urination_problems');
+
+  // 9. Zaparcia i wzdęcia
+  nlp.addDocument('pl', 'Tak, od kilku dni ma mocne zaparcia i wzdęty brzuch.', 'intent.backpain.constipation');
+  nlp.addDocument('pl', 'Nie ma żadnych zaparć ani wzdęć.', 'intent.backpain.no_constipation');
+
+  // 10. Choroby przewlekłe
+  nlp.addDocument('pl', 'Leczy się na nadciśnienie i ma stwierdzoną rwę kulszową.', 'intent.backpain.medical_history');
+  nlp.addDocument('pl', 'Nie, to zdrowy człowiek, na nic nie choruje.', 'intent.backpain.no_medical_history');
+  
   await nlp.train();
   return nlp;
 }
