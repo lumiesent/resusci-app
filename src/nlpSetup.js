@@ -131,6 +131,61 @@ export async function setupNLP() {
   // Pytanie o Leki stałe
   nlp.addDocument('pl', 'Tak, ale od kilku dni nie bierze.', 'intent.stomach.regular_medication_stopped');
   nlp.addDocument('pl', 'Bierze na stałe leki na serce', 'intent.stomach.regular_medication_takes');
+
+  /** Scenariusz 4: Ból Głowy
+   * ==================================
+   * --- INTENCJE DOT. BÓLU GŁOWY ---
+   * ==================================
+   **/ 
+
+  // Zgłoszenie bólu głowy
+  nlp.addDocument('pl', 'Dzień dobry, osoba poszkodowana bardzo źle się czuje. Ma straszny ból głowy.', 'intent.headache.report'); // [cite: 29]
+  nlp.addDocument('pl', 'Mój mąż zwija się z bólu, głowa mu pęka.', 'intent.headache.report');
+
+  // Pytanie o przytomność
+  nlp.addDocument('pl', 'Tak, siedzi, ale ledwo kontaktuje.', 'intent.headache.conscious'); // [cite: 33]
+  nlp.addDocument('pl', 'Jest przytomny', 'intent.headache.conscious');
+  nlp.addDocument('pl', 'Nie, stracił przytomność', 'intent.headache.unconscious');
+  nlp.addDocument('pl', 'Zemdlał, nie ma z nim kontaktu', 'intent.headache.unconscious');
+
+  // Pytanie o Oddech (Gałąź: nieprzytomny)
+  nlp.addDocument('pl', 'Tak, oddycha', 'intent.headache.breathing');
+  nlp.addDocument('pl', 'Nie oddycha', 'intent.headache.no_breathing');
+
+  // Pytanie o okoliczności
+  nlp.addDocument('pl', 'Jakieś pół godziny temu, nagle zaczęła krzyczeć, że głowa jej pęka i zwymiotowała.', 'intent.headache.circumstances'); // [cite: 35]
+  nlp.addDocument('pl', 'Zaczęło się nagle po upadku i mocno wymiotuje.', 'intent.headache.circumstances');
+
+  // Pytanie o mowę i widzenie
+  nlp.addDocument('pl', 'Tak, bełkocze i mówi, że widzi podwójnie.', 'intent.headache.issues'); // [cite: 37]
+  nlp.addDocument('pl', 'Mówi niewyraźnie i traci wzrok.', 'intent.headache.issues');
+  nlp.addDocument('pl', 'Nie, normalnie mówi i widzi wyraźnie.', 'intent.headache.no_issues');
+
+  // Pytanie o drętwienia
+  nlp.addDocument('pl', 'Mówi, że drętwieje jej cała prawa strona ciała.', 'intent.headache.numbness'); // [cite: 39]
+  nlp.addDocument('pl', 'Narzeka na drętwienie rąk.', 'intent.headache.numbness');
+  nlp.addDocument('pl', 'Nie drętwieje mu nic.', 'intent.headache.no_numbness');
+
+  // Pytanie o leki na stałe / historię
+  nlp.addDocument('pl', 'Tak, choruje na nadciśnienie i bierze leki na rozrzedzenie krwi.', 'intent.headache.medical_history'); // [cite: 41]
+  nlp.addDocument('pl', 'Bierze leki przeciwzakrzepowe ze względu na serce.', 'intent.headache.medical_history');
+  nlp.addDocument('pl', 'Na nic nie choruje i nie bierze leków.', 'intent.headache.no_medical_history');
+  
+  // Szczegóły wymiotów
+  nlp.addDocument('pl', 'Wymiotuje od godziny samą treścią żołądkową, bez krwi.', 'intent.headache.vomiting_details');
+  nlp.addDocument('pl', 'To tylko woda i żółć, zdarzyło się trzy razy.', 'intent.headache.vomiting_details');
+  nlp.addDocument('pl', 'Nie wymiotuje w ogóle.', 'intent.headache.no_vomiting');
+
+  // Pytanie o uraz
+  nlp.addDocument('pl', 'Tak, rano osoba poszkodowana uderzyła się mocno w głowę o szafkę.', 'intent.headache.trauma');
+  nlp.addDocument('pl', 'Uderzyła się w głowę rano.', 'intent.headache.trauma');
+  nlp.addDocument('pl', 'Spadł ze schodów jakieś dwie godziny temu.', 'intent.headache.trauma');
+  nlp.addDocument('pl', 'Nie, nie było żadnego urazu ani upadku.', 'intent.headache.no_trauma');
+
+  // Historia bólów głowy
+  nlp.addDocument('pl', 'Osoba poszkodowana miewa migreny, ale ten ból jest zupełnie inny i silniejszy.', 'intent.headache.history_different');
+  nlp.addDocument('pl', 'Często ją boli głowa i to wygląda tak samo jak zawsze.', 'intent.headache.history_similar');
+  nlp.addDocument('pl', 'Nigdy wcześniej nie było takich problemów, to pierwszy raz.', 'intent.headache.no_history');
   
   await nlp.train();
   return nlp;

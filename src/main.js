@@ -7,7 +7,8 @@ import { createActor } from 'xstate';
 // IMPORT LOGIKI: Tutaj musisz dodać importy, gdy stworzysz nowe maszyny i słowniki dialogów.
 import { 
   allergyMachine, allergyDialog,
-  stomachMachine, stomachDialog
+  stomachMachine, stomachDialog,
+  headacheMachine, headacheDialog
 } from './scenario.js';
 import { setupNLP } from './nlpSetup.js';
 
@@ -21,7 +22,8 @@ import { setupNLP } from './nlpSetup.js';
  */
 const scenarioRegistry = {
   'allergy': { machine: allergyMachine, dialog: allergyDialog },
-  'stomach': { machine: stomachMachine, dialog: stomachDialog }
+  'stomach': { machine: stomachMachine, dialog: stomachDialog },
+  'headache': { machine: headacheMachine, dialog: headacheDialog }
 };
 
 
