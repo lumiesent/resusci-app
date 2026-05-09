@@ -7,6 +7,7 @@ import {
 } from './scenario.js';
 import { setupNLP } from './nlpSetup.js';
 import { icons } from './icons.js'; // Zaimportuj swoje ikony
+import logoUrl from './img/logo.png';
 
 // --- BAZA WIEDZY O SCENARIUSZACH ---
 const scenarioRegistry = {
@@ -183,9 +184,10 @@ function addMessage(text, sender) {
   if (sender === 'bot') {
     const avatar = document.createElement('div');
     avatar.className = 'avatar';
-    avatar.innerHTML = `<img src="src/img/logo.png" alt="Bot" class="avatar-image">`;
+    // Używamy zmiennej logoUrl zamiast sztywnej ścieżki tekstowej
+    avatar.innerHTML = `<img src="${logoUrl}" alt="Bot" class="avatar-image">`;
     msgDiv.appendChild(avatar);
-  } 
+  }
   
   const bubble = document.createElement('div');
   bubble.className = 'bubble';
@@ -238,6 +240,11 @@ function exitScenario() {
 // --- INICJALIZACJA APLIKACJI ---
 async function initApp() {
   document.getElementById('nav-to-scenario-btn').addEventListener('click', () => navTo('screen-scenario'));
+
+  // Znajdź wszystkie obrazki z klasą logo-image i ustaw im poprawne źródło
+  document.querySelectorAll('.logo-image').forEach(img => {
+    img.src = logoUrl;
+  });
   
   // 1. Rozpocznij ładowanie NLP
   nlpEngine = await setupNLP();
