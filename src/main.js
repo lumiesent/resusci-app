@@ -6,34 +6,35 @@ import {
   backpainMachine, backpainDialog
 } from './scenario.js';
 import { setupNLP } from './nlpSetup.js';
+import { icons } from './icons.js'; // Zaimportuj swoje ikony
 
 // --- BAZA WIEDZY O SCENARIUSZACH ---
 const scenarioRegistry = {
   'allergy': { 
     machine: allergyMachine, 
     dialog: allergyDialog, 
-    icon: '/src/img/allergy-icon.svg', // Ścieżka do SVG
+    icon: icons.allergy, // Ścieżka do SVG
     title: 'Alergia', 
     desc: 'Stany alergiczne mogą objawiać się dusznościami, wysypką, obrzękiem dróg oddechowych. Wymagają szybkiej identyfikacji i podjęcia działań ratunkowych.' 
   },
   'stomach': { 
     machine: stomachMachine, 
     dialog: stomachDialog, 
-    icon: '/src/img/stomach-icon.svg', // Ścieżka do SVG
+    icon: icons.stomach, // Ścieżka do SVG
     title: 'Ból Brzucha', 
     desc: 'Silny ból brzucha może świadczyć o wielu groźnych schorzeniach. Kluczowe jest określenie umiejscowienia bólu oraz chorób współistniejących.' 
   },
   'headache': { 
     machine: headacheMachine, 
     dialog: headacheDialog, 
-    icon: '/src/img/headache-icon.svg', // Ścieżka do SVG
+    icon: icons.headache, // Ścieżka do SVG
     title: 'Ból Głowy', 
     desc: 'Nagły, rozdzierający ból głowy często zwiastuje stany zagrażające życiu, w tym udar lub pęknięcie tętniaka. Reakcja musi być natychmiastowa.' 
   },
   'backpain': { 
     machine: backpainMachine, 
     dialog: backpainDialog, 
-    icon: '/src/img/placeholder.svg', // Ścieżka do SVG
+    icon: icons.placeholder, // Ścieżka do SVG
     title: 'Ból Pleców', 
     desc: 'Urazy i silne bóle kręgosłupa mogą prowadzić do niedowładów. Istotne jest ustalenie występowania zaburzeń neurologicznych.' 
   }
@@ -263,9 +264,13 @@ async function initApp() {
       document.getElementById('info-title').textContent = meta.title;
       document.getElementById('info-desc').textContent = meta.desc;
       
-      // ZMIANA: Podmiana źródła obrazka zamiast textContent ikony Material
+      // Pobierz aktualną ścieżkę strony i połącz ją z ikoną
+      const baseUrl = window.location.pathname.endsWith('/') 
+                      ? window.location.pathname 
+                      : window.location.pathname.slice(0, window.location.pathname.lastIndexOf('/') + 1);
+      
       const infoIcon = document.getElementById('info-icon');
-      infoIcon.src = meta.icon; 
+      infoIcon.src = meta.icon;
       
       navTo('screen-info');
     });
