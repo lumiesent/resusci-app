@@ -1,78 +1,163 @@
 <!DOCTYPE html>
 <html lang="pl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Symulator 999</title>
-    <link rel="stylesheet" href="/src/style.css">
-  </head>
-  <body>
-    <div id="app">
-      
-      <div id="menu-screen">
-        <header>Wybierz Scenariusz</header>
-        
-        <div id="loading-status" style="text-align: center; padding: 20px; color: var(--brand-cream);">
-          Ładowanie sztucznej inteligencji...
-        </div>
-        
-        <div class="scenario-list hidden" id="scenario-list">
-          <button class="scenario-card" data-scenario="allergy">
-            <div class="scenario-icon">🐝</div>
-            <div class="scenario-info">
-              <h3>Alergie</h3>
-              <p>Użądlenie, duszności, opuchlizna.</p>
-            </div>
-          </button>
-          
-          <button class="scenario-card" data-scenario="stomach">
-            <div class="scenario-icon">🌰</div>
-            <div class="scenario-info">
-              <h3>Ból Brzucha</h3>
-              <p>Kłujący ból żołądka, wymioty.</p>
-            </div>
-          </button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Resusci Call</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kufam:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <div id="app-container">
 
-          <button class="scenario-card" data-scenario="headache">
-            <div class="scenario-icon">🧠</div>
-            <div class="scenario-info">
-              <h3>Ból Głowy</h3>
-              <p>Zawroty głowy, wymioty, problemy z wizją.</p>
-            </div>
-          </button>
-
-          <button class="scenario-card" data-scenario="backpain">
-            <div class="scenario-icon">🦴</div>
-            <div class="scenario-info">
-              <h3>Ból Pleców</h3>
-              <p>Ból nóg, drętwienie, zaparcia.</p>
-            </div>
-          </button>
-          
+    <div id="loading-screen" class="screen active">
+      <div class="content" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+        <div class="logo-box" style="animation: pulse-ekg 1.5s infinite;">
+          <img src="src/img/logo.png" alt="Resusci Call Logo" class="logo-image">
         </div>
+        <h3 style="margin-top: 20px; color: var(--text-dark); font-weight: 600;">Ładowanie sztucznej inteligencji...</h3>
+        <p style="color: var(--primary-dark-light); font-size: 0.9rem;">Przygotowujemy scenariusze ratunkowe</p>
       </div>
-
-      <div id="chat-screen" class="hidden">
-        <header class="chat-header">
-          <button id="back-btn">← Wróć</button>
-          <span>Numer 112</span>
-          <div style="width: 60px;"></div> 
-        </header>
-        
-        <div id="chat-window"></div>
-        
-        <div id="hint-box">
-          <strong>Wskazówka:</strong> <span id="hint-text">Czekam na połączenie...</span>
-        </div>
-        
-        <div id="input-area">
-          <button id="mic-btn" title="Mów">Mikrofon</button>
-          <input type="text" id="user-input" placeholder="Napisz odpowiedź..." autocomplete="off"/>
-          <button id="send-btn">Wyślij</button>
-        </div>
-      </div>
-
     </div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+
+    <div id="screen-welcome" class="screen">
+      <div class="header-card">
+        <div class="header-nav" style="justify-content: flex-end;">
+          <button class="icon-btn"><span class="material-symbols-outlined">settings</span></button>
+        </div>
+        <div class="logo-area">
+          <div class="logo-box">
+            <img src="src/img/logo.png" alt="Resusci Call Logo" class="logo-image">
+          </div>
+          <div class="header-title">RESUSCI <span>CALL</span></div>
+        </div>
+      </div>
+      
+      <div class="content">
+        <button class="main-btn green" id="nav-to-scenario-btn">
+          <div class="btn-content">
+            <h3>Rozmowa<br><span class="btn-subtitle">z Przewodnikiem</span></h3>
+            <p>Poznaj dobre praktyki rozmowy wraz z naszym przewodnikiem.</p>
+          </div>
+          <span class="material-symbols-outlined btn-arrow">arrow_forward</span>
+          <span class="material-symbols-outlined btn-icon-large">menu_book</span>
+        </button>
+
+        <button class="main-btn dark">
+          <div class="btn-content">
+            <h3>Symulacja<br><span class="btn-subtitle">Rozmowy 999</span></h3>
+            <p>Spróbuj swoich sił w profesjonalnym symulatorze medycznym.</p>
+          </div>
+          <span class="material-symbols-outlined btn-arrow">arrow_forward</span>
+          <span class="material-symbols-outlined btn-icon-large">headset_mic</span>
+        </button>
+      </div>
+      <div class="footer">Resusci Call • 2026</div>
+    </div>
+
+    <div id="screen-scenario" class="screen">
+      <div class="header-card">
+        <div class="header-nav">
+          <button class="icon-btn nav-back-btn" data-target="screen-welcome"><span class="material-symbols-outlined">arrow_back</span></button>
+          <div class="header-title">RESUSCI <span>CALL</span></div>
+          <button class="icon-btn"><span class="material-symbols-outlined">settings</span></button>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="grid-container" id="scenario-list">
+          <button class="grid-item scenario-card" data-scenario="allergy">
+            <img src="/src/img/allergy-icon.svg" alt="Alergia" class="icon">
+            <span>Alergia</span>
+          </button>
+          <button class="grid-item scenario-card" data-scenario="headache">
+            <img src="/src/img/headache-icon.svg" alt="Ból Głowy" class="icon">
+            <span>Ból Głowy</span>
+          </button>
+          <button class="grid-item scenario-card" data-scenario="stomach">
+            <img src="/src/img/stomach-icon.svg" alt="Ból Brzucha" class="icon">
+            <span>Ból Brzucha</span>
+          </button>
+          <button class="grid-item scenario-card" data-scenario="backpain">
+            <img src="/src/img/placeholder.svg" alt="Alergia" class="icon">
+            <span>Ból Pleców</span>
+          </button>
+        </div>
+      </div>
+      <div class="footer">Resusci Call • 2026</div>
+    </div>
+
+    <div id="screen-info" class="screen">
+      <div class="header-card">
+        <div class="header-nav">
+          <button class="icon-btn nav-back-btn" data-target="screen-scenario"><span class="material-symbols-outlined">arrow_back</span></button>
+          <div class="header-title">RESUSCI <span>CALL</span></div>
+          <button class="icon-btn"><span class="material-symbols-outlined">settings</span></button>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="info-card">
+          <img src="" alt="Ikona Scenariusza" class="material-symbols-outlined info-card-icon" id="info-icon">
+          
+          <h3 id="info-title">Wybierz Scenariusz</h3>
+          <p id="info-desc">Wczytywanie informacji...</p>
+        </div>
+
+        <h3 class="section-title">Wybierz tryb scenariusza</h3>
+
+        <button class="option-btn dark" id="mode-text-btn">
+          <div>
+            <h4>Tylko Tekst</h4>
+          </div>
+          <span class="material-symbols-outlined">chat</span>
+        </button>
+
+        <button class="option-btn green" id="mode-hybrid-btn">
+          <div>
+            <h4>Tryb Hybrydowy</h4>
+            <p>Tekst + Głos</p>
+          </div>
+          <span class="material-symbols-outlined">volume_up</span>
+        </button>
+      </div>
+      <div class="footer">Resusci Call • 2026</div>
+    </div>
+
+    <div id="screen-chat" class="screen">
+      <div class="header-card">
+        <div class="header-nav">
+          <button class="icon-btn" id="exit-chat-btn"><span class="material-symbols-outlined">arrow_back</span></button>
+          <div class="header-title">RESUSCI <span>CALL</span></div>
+          <button class="icon-btn"><span class="material-symbols-outlined">settings</span></button>
+        </div>
+      </div>
+
+      <div class="content" id="chat-window">
+        </div>
+
+      <div id="hint-box" class="hint-box">
+        <strong>Wskazówka:</strong> <span id="hint-text">Czekam na połączenie...</span>
+      </div>
+
+      <div class="chat-input-area">
+        <button id="mic-btn" class="send-btn mic-btn" title="Mów">
+          <span class="material-symbols-outlined">mic</span>
+        </button>
+        
+        <div class="chat-input-wrapper">
+          <input type="text" id="user-input" placeholder="Opisz sytuację..." autocomplete="off">
+        </div>
+        
+        <button id="send-btn" class="send-btn send-action">
+          <span class="material-symbols-outlined" style="margin-left: 4px;">send</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
 </html>
