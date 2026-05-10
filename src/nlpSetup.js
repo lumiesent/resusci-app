@@ -247,6 +247,54 @@ export async function setupNLP() {
   // 10. Choroby przewlekłe
   nlp.addDocument('pl', 'Leczy się na nadciśnienie i ma stwierdzoną rwę kulszową.', 'intent.backpain.medical_history');
   nlp.addDocument('pl', 'Nie, to zdrowy człowiek, na nic nie choruje.', 'intent.backpain.no_medical_history');
+
+  /** Scenariusz 6: Ciąża, poród, poronienie
+   * ===============================================
+   * --- INTENCJE DOT. CIĄŻY I PORODU ---
+   * ===============================================
+   **/ 
+
+  // Zgłoszenie
+  nlp.addDocument('pl', 'Dzień dobry, osoba poszkodowana zaczęła rodzić! Odeszły jej wody i ma bardzo silne skurcze.', 'intent.pregnancy.report');
+  nlp.addDocument('pl', 'Kobieta rodzi, ma silne bóle.', 'intent.pregnancy.report');
+  nlp.addDocument('pl', 'Poszkodowana krwawi i ma skurcze, to chyba poronienie.', 'intent.pregnancy.report');
+
+  // Przytomność
+  nlp.addDocument('pl', 'Tak, poszkodowana jest przytomna.', 'intent.pregnancy.conscious');
+  nlp.addDocument('pl', 'Tak, siedzi i krzyczy z bólu.', 'intent.pregnancy.conscious');
+  nlp.addDocument('pl', 'Nie, straciła przytomność, nie reaguje.', 'intent.pregnancy.unconscious');
+  nlp.addDocument('pl', 'Zemdlała i nie ma z nią kontaktu.', 'intent.pregnancy.unconscious');
+
+  // Oddech (Gałąź nieprzytomny)
+  nlp.addDocument('pl', 'Tak, klatka się unosi, oddycha.', 'intent.pregnancy.breathing');
+  nlp.addDocument('pl', 'Nie słyszę oddechu, nie oddycha.', 'intent.pregnancy.no_breathing');
+
+  // Która ciąża, tydzień, poród
+  nlp.addDocument('pl', 'To druga ciąża, trzydziesty dziewiąty tydzień.', 'intent.pregnancy.details');
+  nlp.addDocument('pl', 'Pierwsza ciąża, ósmy miesiąc.', 'intent.pregnancy.details');
+
+  // Pojedyncza/mnoga, zagrożona, powikłania
+  nlp.addDocument('pl', 'Ciąża pojedyncza, nie jest zagrożona. Wcześniej nie było powikłań.', 'intent.pregnancy.complications');
+  nlp.addDocument('pl', 'To bliźniaki, ciąża wysokiego ryzyka.', 'intent.pregnancy.complications');
+
+  // Skurcze i wody płodowe
+  nlp.addDocument('pl', 'Skurcze są co trzy minuty i trwają bardzo długo. Wody są mętne.', 'intent.pregnancy.contractions_fluid');
+  nlp.addDocument('pl', 'Wody odeszły pół godziny temu, skurcze co pięć minut.', 'intent.pregnancy.contractions_fluid');
+  nlp.addDocument('pl', 'Wody jeszcze nie odeszły, ale skurcze są częste.', 'intent.pregnancy.contractions_fluid');
+
+  // Ruchy płodu
+  nlp.addDocument('pl', 'Tak, mały się ruszał jeszcze przed chwilą.', 'intent.pregnancy.fetal_movements');
+  nlp.addDocument('pl', 'Tak, czuje ruchy dziecka.', 'intent.pregnancy.fetal_movements');
+  nlp.addDocument('pl', 'Nie czuje ruchów dziecka od rana.', 'intent.pregnancy.no_fetal_movements');
+
+  // Krwawienie
+  nlp.addDocument('pl', 'Nie ma krwi, nic nie krwawi.', 'intent.pregnancy.no_bleeding');
+  nlp.addDocument('pl', 'Tak, występuje silne krwawienie z dróg rodnych.', 'intent.pregnancy.bleeding');
+
+  // Uraz i historia chorób
+  nlp.addDocument('pl', 'Choruje na tarczycę, bierze Euthyrox. Urazów nie było.', 'intent.pregnancy.trauma_medical');
+  nlp.addDocument('pl', 'Miała wypadek, upadła na brzuch. Nie bierze żadnych leków.', 'intent.pregnancy.trauma_medical');
+  nlp.addDocument('pl', 'Jest w pełni zdrowa, żadnego urazu nie było.', 'intent.pregnancy.trauma_medical');
   
   await nlp.train();
   return nlp;

@@ -3,7 +3,8 @@ import {
   allergyMachine, allergyDialog,
   stomachMachine, stomachDialog,
   headacheMachine, headacheDialog,
-  backpainMachine, backpainDialog
+  backpainMachine, backpainDialog,
+  pregnancyMachine, pregnancyDialog
 } from './scenario.js';
 import { setupNLP } from './nlpSetup.js';
 import { icons } from './icons.js'; // Zaimportuj swoje ikony
@@ -38,6 +39,13 @@ const scenarioRegistry = {
     icon: icons.placeholder, // Ścieżka do SVG
     title: 'Ból Pleców', 
     desc: 'Urazy i silne bóle kręgosłupa mogą prowadzić do niedowładów. Istotne jest ustalenie występowania zaburzeń neurologicznych.' 
+  },
+  'pregnancy': { 
+    machine: pregnancyMachine, 
+    dialog: pregnancyDialog, 
+    icon: icons.placeholder, // Ścieżka do SVG
+    title: 'Ciąża, Poród, Poronienie', 
+    desc: 'Specyficzne stany związane z ciąży, porodem i poronieniem wymagają szybkiej identyfikacji i podjęcia działań ratunkowych.' 
   }
 };
 
