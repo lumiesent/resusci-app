@@ -4,7 +4,8 @@ import {
   stomachMachine, stomachDialog,
   headacheMachine, headacheDialog,
   backpainMachine, backpainDialog,
-  pregnancyMachine, pregnancyDialog
+  pregnancyMachine, pregnancyDialog,
+  diabetesMachine, diabetesDialog
 } from './scenario.js';
 import { setupNLP } from './nlpSetup.js';
 import { icons } from './icons.js'; // Zaimportuj swoje ikony
@@ -46,6 +47,13 @@ const scenarioRegistry = {
     icon: icons.placeholder, // Ścieżka do SVG
     title: 'Ciąża, Poród, Poronienie', 
     desc: 'Specyficzne stany związane z ciąży, porodem i poronieniem wymagają szybkiej identyfikacji i podjęcia działań ratunkowych.' 
+  },
+  'diabetes': { 
+    machine: diabetesMachine, 
+    dialog: diabetesDialog, 
+    icon: icons.placeholder, // Ścieżka do SVG
+    title: 'Cukrzyca', 
+    desc: 'Zaburzenia glikemii mogą prowadzić do stanów zagrożenia życia. Kluczowe jest szybkie rozpoznanie i podjęcie działań ratunkowych.' 
   }
 };
 
@@ -104,29 +112,42 @@ if (recognition) {
   recognition.maxAlternatives = 1;
 
   let finalTranscript = '';
+  let lastProcessedIndex = -1;
 
   recognition.onstart = () => {
     finalTranscript = '';
+    lastProcessedIndex = -1;
     micBtn.classList.add('recording');
     console.log("Rozpoczęto nasłuchiwanie...");
   };
 
+  // Wewnątrz funkcji setupSpeechRecognition lub tam, gdzie inicjalizujesz recognition:
   recognition.onresult = (event) => {
     let interimTranscript = '';
-    
-    for (let i = event.resultIndex; i < event.results.length; i++) {
-      const transcript = event.results[i][0].transcript;
-      
-      if (event.results[i].isFinal) {
-        finalTranscript += transcript + ' ';
-      } else {
-        interimTranscript += transcript;
-      }
+    let finalTranscript = '';
+
+    for (let i = event.resultIndex; i < event.results.length; ++i) {
+        if (event.results[i].isFinal) {
+            // To jest tekst, który został definitywnie rozpoznany
+            finalTranscript += event.results[i][0].transcript;
+        } else {
+            // To jest tekst "w locie", który jeszcze może się zmienić
+            interimTranscript += event.results[i][0].transcript;
+        }
     }
-    
-    userInput.value = finalTranscript + interimTranscript;
-    console.log("Transkrypcja:", userInput.value);
-  };
+
+    // Aktualizujemy pole input tylko tekstem finalnym 
+    // lub dynamicznie podmieniamy zawartość zamiast dopisywać (+=)
+    if (finalTranscript !== '') {
+        userInput.value = finalTranscript.trim();
+        
+        // Opcjonalnie: automatyczne wysłanie, jeśli chcesz trybu hands-free
+        // handleUserInput(); 
+    } else {
+        // Opcjonalnie: pokaż użytkownikowi, co bot słyszy w tej chwili (szary tekst)
+        userInput.value = interimTranscript;
+    }
+};
   
   recognition.onend = () => {
     micBtn.classList.remove('recording');

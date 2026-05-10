@@ -50,12 +50,12 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'Poszkodowana zjadła orzechy i zaczyna się dusić.', 'intent.allergy.report');
 
   // Pytanie o przytomność
-  nlp.addDocument('pl', 'Tak, osoba jest przytomna', 'intent.allergy.conscious');
-  nlp.addDocument('pl', 'Osoba jest nieprzytomna', 'intent.allergy.unconscious');
+  nlp.addDocument('pl', 'Tak, osoba jest przytomna', 'intent.conscious');
+  nlp.addDocument('pl', 'Osoba jest nieprzytomna', 'intent.unconscious');
 
   // Pytanie o oddech
-  nlp.addDocument('pl', 'Tak, oddycha', 'intent.allergy.breathing');
-  nlp.addDocument('pl', 'Nie, nie czuję oddechu', 'intent.allergy.no_breathing');
+  nlp.addDocument('pl', 'Tak, oddycha', 'intent.breathing');
+  nlp.addDocument('pl', 'Nie, nie czuję oddechu', 'intent.no_breathing');
 
   // Pytanie o stan oddechu
   nlp.addDocument('pl', 'Coraz ciężej mu złapać oddech', 'intent.allergy.breathing_difficult');
@@ -96,16 +96,16 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'Zaczęło się nagle godzinę temu, zwija się na podłodze.', 'intent.stomach.report');
 
   // Pytanie o przytomność
-  nlp.addDocument('pl', 'Tak, krzyczy z bólu, jest cały spocony.', 'intent.stomach.conscious');
-  nlp.addDocument('pl', 'Jest przytomny', 'intent.stomach.conscious');
-  nlp.addDocument('pl', 'Nie, stracił przytomność', 'intent.stomach.unconscious');
-  nlp.addDocument('pl', 'Zemdlał, nie ma z nim kontaktu', 'intent.stomach.unconscious');
+  nlp.addDocument('pl', 'Tak, krzyczy z bólu, jest cały spocony.', 'intent.conscious');
+  nlp.addDocument('pl', 'Jest przytomny', 'intent.conscious');
+  nlp.addDocument('pl', 'Nie, stracił przytomność', 'intent.unconscious');
+  nlp.addDocument('pl', 'Zemdlał, nie ma z nim kontaktu', 'intent.unconscious');
 
   // Pytanie o Oddech
-  nlp.addDocument('pl', 'Tak, oddycha', 'intent.stomach.breathing');
-  nlp.addDocument('pl', 'Klatka piersiowa się unosi', 'intent.stomach.breathing');
-  nlp.addDocument('pl', 'Nie oddycha', 'intent.stomach.no_breathing');
-  nlp.addDocument('pl', 'Nie słyszę oddechu', 'intent.stomach.no_breathing');
+  nlp.addDocument('pl', 'Tak, oddycha', 'intent.breathing');
+  nlp.addDocument('pl', 'Klatka piersiowa się unosi', 'intent.breathing');
+  nlp.addDocument('pl', 'Nie oddycha', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Nie słyszę oddechu', 'intent.no_breathing');
 
   // Pytanie o Ból
   nlp.addDocument('pl', 'Boli go nad pępkiem, mówi, że ból promieniuje mu aż do pleców, pod łopatkę.', 'intent.stomach.pain_location');
@@ -143,14 +143,14 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'Mój mąż zwija się z bólu, głowa mu pęka.', 'intent.headache.report');
 
   // Pytanie o przytomność
-  nlp.addDocument('pl', 'Tak, siedzi, ale ledwo kontaktuje.', 'intent.headache.conscious'); // [cite: 33]
-  nlp.addDocument('pl', 'Jest przytomny', 'intent.headache.conscious');
-  nlp.addDocument('pl', 'Nie, stracił przytomność', 'intent.headache.unconscious');
-  nlp.addDocument('pl', 'Zemdlał, nie ma z nim kontaktu', 'intent.headache.unconscious');
+  nlp.addDocument('pl', 'Tak, siedzi, ale ledwo kontaktuje.', 'intent.conscious');
+  nlp.addDocument('pl', 'Jest przytomny', 'intent.conscious');
+  nlp.addDocument('pl', 'Nie, stracił przytomność', 'intent.unconscious');
+  nlp.addDocument('pl', 'Zemdlał, nie ma z nim kontaktu', 'intent.unconscious');
 
   // Pytanie o Oddech (Gałąź: nieprzytomny)
-  nlp.addDocument('pl', 'Tak, oddycha', 'intent.headache.breathing');
-  nlp.addDocument('pl', 'Nie oddycha', 'intent.headache.no_breathing');
+  nlp.addDocument('pl', 'Tak, oddycha', 'intent.breathing');
+  nlp.addDocument('pl', 'Nie oddycha', 'intent.no_breathing');
 
   // Pytanie o okoliczności
   nlp.addDocument('pl', 'Jakieś pół godziny temu, nagle zaczęła krzyczeć, że głowa jej pęka i zwymiotowała.', 'intent.headache.circumstances'); // [cite: 35]
@@ -198,13 +198,13 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'Poszkodowany ma potworny ból kręgosłupa, nie może się ruszyć.', 'intent.backpain.report');
 
   // Przytomność
-  nlp.addDocument('pl', 'Tak, leży na podłodze, jest bardzo blady i spocony.', 'intent.backpain.conscious');
-  nlp.addDocument('pl', 'Tak, leży przytomna.', 'intent.backpain.conscious');
-  nlp.addDocument('pl', 'Nie, stracił przytomność, nie reaguje.', 'intent.backpain.unconscious');
+  nlp.addDocument('pl', 'Tak, leży na podłodze, jest bardzo blady i spocony.', 'intent.conscious');
+  nlp.addDocument('pl', 'Tak, leży przytomna.', 'intent.conscious');
+  nlp.addDocument('pl', 'Nie, stracił przytomność, nie reaguje.', 'intent.unconscious');
 
   // Oddech (Gałąź nieprzytomny)
-  nlp.addDocument('pl', 'Tak, klatka się unosi, oddycha.', 'intent.backpain.breathing');
-  nlp.addDocument('pl', 'Nie słyszę oddechu, nie oddycha.', 'intent.backpain.no_breathing');
+  nlp.addDocument('pl', 'Tak, klatka się unosi, oddycha.', 'intent.breathing');
+  nlp.addDocument('pl', 'Nie słyszę oddechu, nie oddycha.', 'intent.no_breathing');
 
   // 1. Od kiedy boli?
   nlp.addDocument('pl', 'Boli od jakiś dwóch godzin.', 'intent.backpain.since_when');
@@ -260,14 +260,14 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'Poszkodowana krwawi i ma skurcze, to chyba poronienie.', 'intent.pregnancy.report');
 
   // Przytomność
-  nlp.addDocument('pl', 'Tak, poszkodowana jest przytomna.', 'intent.pregnancy.conscious');
-  nlp.addDocument('pl', 'Tak, siedzi i krzyczy z bólu.', 'intent.pregnancy.conscious');
-  nlp.addDocument('pl', 'Nie, straciła przytomność, nie reaguje.', 'intent.pregnancy.unconscious');
-  nlp.addDocument('pl', 'Zemdlała i nie ma z nią kontaktu.', 'intent.pregnancy.unconscious');
+  nlp.addDocument('pl', 'Tak, poszkodowana jest przytomna.', 'intent.conscious');
+  nlp.addDocument('pl', 'Tak, siedzi i krzyczy z bólu.', 'intent.conscious');
+  nlp.addDocument('pl', 'Nie, straciła przytomność, nie reaguje.', 'intent.unconscious');
+  nlp.addDocument('pl', 'Zemdlała i nie ma z nią kontaktu.', 'intent.unconscious');
 
   // Oddech (Gałąź nieprzytomny)
-  nlp.addDocument('pl', 'Tak, klatka się unosi, oddycha.', 'intent.pregnancy.breathing');
-  nlp.addDocument('pl', 'Nie słyszę oddechu, nie oddycha.', 'intent.pregnancy.no_breathing');
+  nlp.addDocument('pl', 'Tak, klatka się unosi, oddycha.', 'intent.breathing');
+  nlp.addDocument('pl', 'Nie słyszę oddechu, nie oddycha.', 'intent.no_breathing');
 
   // Która ciąża, tydzień, poród
   nlp.addDocument('pl', 'To druga ciąża, trzydziesty dziewiąty tydzień.', 'intent.pregnancy.details');
@@ -295,6 +295,51 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'Choruje na tarczycę, bierze Euthyrox. Urazów nie było.', 'intent.pregnancy.trauma_medical');
   nlp.addDocument('pl', 'Miała wypadek, upadła na brzuch. Nie bierze żadnych leków.', 'intent.pregnancy.trauma_medical');
   nlp.addDocument('pl', 'Jest w pełni zdrowa, żadnego urazu nie było.', 'intent.pregnancy.trauma_medical');
+
+  /** Scenariusz 7: Cukrzyca
+   * ===============================================
+   * --- INTENCJE DOT. CUKRZYCY I ZABURZEŃ GLIKEMII ---
+   * ===============================================
+   **/ 
+
+  // Zgłoszenie
+  nlp.addDocument('pl', 'Dzień dobry, osoba poszkodowana jest diabetykiem i bardzo dziwnie się zachowuje. Jest agresywna, bełkocze i cała się trzęsie.', 'intent.diabetes.report'); // [cite: 76]
+  nlp.addDocument('pl', 'Ktoś ma chyba atak cukrzycy, dziwnie się zachowuje.', 'intent.diabetes.report');
+  nlp.addDocument('pl', 'Poszkodowany ma cukrzycę i nagle bardzo źle się poczuł.', 'intent.diabetes.report'); // [cite: 44, 45]
+
+  // Przytomność
+  nlp.addDocument('pl', 'Tak, siedzi na podłodze, ale nie da się z nim dogadać. Jest cały zlany zimnym potem i blady.', 'intent.conscious');
+  nlp.addDocument('pl', 'Tak, jest przytomny.', 'intent.conscious');
+  nlp.addDocument('pl', 'Nie, stracił przytomność, nie reaguje.', 'intent.unconscious');
+  nlp.addDocument('pl', 'Zemdlał i nie ma z nim kontaktu.', 'intent.unconscious');
+
+  // Oddech (Gałąź nieprzytomny)
+  nlp.addDocument('pl', 'Tak, klatka się unosi, oddycha.', 'intent.breathing');
+  nlp.addDocument('pl', 'Nie słyszę oddechu, nie oddycha.', 'intent.no_breathing');
+
+  // Poziom glukozy
+  nlp.addDocument('pl', 'Tak, przed chwilą. Glukometr pokazał 35.', 'intent.diabetes.sugar_measured'); // [cite: 82]
+  nlp.addDocument('pl', 'Sprawdzaliśmy w aplikacji z sensora, cukier drastycznie spadł.', 'intent.diabetes.sugar_measured'); // [cite: 54]
+  nlp.addDocument('pl', 'Nie mierzyliśmy, nie mamy sprzętu.', 'intent.diabetes.sugar_not_measured');
+
+  // Zachowanie i stan skóry (Świadomość, mowa, wilgotność, kolor)
+  nlp.addDocument('pl', 'Jest bardzo pobudzony, bełkocze i strasznie się poci.', 'intent.diabetes.behavior_skin_issues'); // [cite: 57, 58, 87]
+  nlp.addDocument('pl', 'Jest blady jak ściana i zlany potem.', 'intent.diabetes.behavior_skin_issues'); // [cite: 58]
+  nlp.addDocument('pl', 'Mówi normalnie, ale skóra jest bardzo wilgotna.', 'intent.diabetes.behavior_skin_issues'); 
+
+  // Trudności w oddychaniu
+  nlp.addDocument('pl', 'Tak, ma duszności i oddycha bardzo ciężko.', 'intent.diabetes.breathing_issues'); // [cite: 59, 70]
+  nlp.addDocument('pl', 'Nie, oddycha normalnie.', 'intent.diabetes.no_breathing_issues');
+
+  // Insulina i choroby
+  nlp.addDocument('pl', 'Tak, bierze insulinę na stałe.', 'intent.diabetes.takes_insulin'); // [cite: 84]
+  nlp.addDocument('pl', 'Choruje tylko na cukrzycę, bierze tabletki.', 'intent.diabetes.takes_insulin'); // [cite: 60, 61]
+  nlp.addDocument('pl', 'Nie przyjmuje insuliny.', 'intent.diabetes.no_insulin');
+
+  // Podanie cukru (Bezpieczeństwo)
+  nlp.addDocument('pl', 'Tak, pije właśnie słodki sok.', 'intent.diabetes.give_sugar_yes'); // [cite: 89]
+  nlp.addDocument('pl', 'Daliśmy mu cukier i jest w stanie przełykać.', 'intent.diabetes.give_sugar_yes');
+  nlp.addDocument('pl', 'Nie jest w stanie nic przełknąć, wypluwa wszystko.', 'intent.diabetes.give_sugar_no'); // [cite: 64]
   
   await nlp.train();
   return nlp;

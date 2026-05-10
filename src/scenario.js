@@ -124,15 +124,15 @@ export const allergyMachine = createMachine({
 
     ask_consciousness: {
       on: {
-        'intent.allergy.conscious': 'ask_breathing_difficulties',
-        'intent.allergy.unconscious': 'ask_breathing'
+        'intent.conscious': 'ask_breathing_difficulties',
+        'intent.unconscious': 'ask_breathing'
       }
     },
 
     ask_breathing: {
       on: {
-        'intent.allergy.breathing': 'safe_position',
-        'intent.allergy.no_breathing': 'cpr'
+        'intent.breathing': 'safe_position',
+        'intent.no_breathing': 'cpr'
       }
     },
 
@@ -312,16 +312,16 @@ export const stomachMachine = createMachine({
 
     ask_consciousness: {
       on: {
-        'intent.stomach.conscious': 'ask_pain_location', // Rozgałęzienie: Przytomny -> wywiad brzuszny
-        'intent.stomach.unconscious': 'ask_breathing'    // Rozgałęzienie: Nieprzytomny -> kontrola oddechu
+        'intent.conscious': 'ask_pain_location', // Rozgałęzienie: Przytomny -> wywiad brzuszny
+        'intent.unconscious': 'ask_breathing'    // Rozgałęzienie: Nieprzytomny -> kontrola oddechu
       }
     },
 
     // --- GAŁĄŹ B: NIEPRZYTOMNY ---
     ask_breathing: {
       on: {
-        'intent.stomach.breathing': 'safe_position',     // Rozgałęzienie: Oddycha -> Pozycja boczna
-        'intent.stomach.no_breathing': 'cpr'             // Rozgałęzienie: Nie oddycha -> RKO
+        'intent.breathing': 'safe_position',     // Rozgałęzienie: Oddycha -> Pozycja boczna
+        'intent.no_breathing': 'cpr'             // Rozgałęzienie: Nie oddycha -> RKO
       }
     },
 
@@ -493,16 +493,16 @@ export const headacheMachine = createMachine({
 
     ask_consciousness: {
       on: {
-        'intent.headache.conscious': 'ask_circumstances', // Gałąź przytomny -> Wywiad
-        'intent.headache.unconscious': 'ask_breathing'    // Gałąź nieprzytomny -> Kontrola oddechu
+        'intent.conscious': 'ask_circumstances', // Gałąź przytomny -> Wywiad
+        'intent.unconscious': 'ask_breathing'    // Gałąź nieprzytomny -> Kontrola oddechu
       }
     },
 
     // --- GAŁĄŹ NIEPRZYTOMNY ---
     ask_breathing: {
       on: {
-        'intent.headache.breathing': 'safe_position',     
-        'intent.headache.no_breathing': 'cpr'             
+        'intent.breathing': 'safe_position',     
+        'intent.no_breathing': 'cpr'             
       }
     },
 
@@ -695,16 +695,16 @@ export const backpainMachine = createMachine({
 
     ask_consciousness: {
       on: {
-        'intent.backpain.conscious': 'ask_since_when',
-        'intent.backpain.unconscious': 'ask_breathing'
+        'intent.conscious': 'ask_since_when',
+        'intent.unconscious': 'ask_breathing'
       }
     },
 
     // --- GAŁĄŹ: NIEPRZYTOMNY ---
     ask_breathing: {
       on: {
-        'intent.backpain.breathing': 'safe_position',     
-        'intent.backpain.no_breathing': 'cpr'             
+        'intent.breathing': 'safe_position',     
+        'intent.no_breathing': 'cpr'             
       }
     },
     safe_position: { type: 'final' },
@@ -891,16 +891,16 @@ export const pregnancyMachine = createMachine({
 
     ask_consciousness: {
       on: {
-        'intent.pregnancy.conscious': 'ask_pregnancy_details',
-        'intent.pregnancy.unconscious': 'ask_breathing'
+        'intent.conscious': 'ask_pregnancy_details',
+        'intent.unconscious': 'ask_breathing'
       }
     },
 
     // --- GAŁĄŹ: NIEPRZYTOMNA ---
     ask_breathing: {
       on: {
-        'intent.pregnancy.breathing': 'safe_position',     
-        'intent.pregnancy.no_breathing': 'cpr'             
+        'intent.breathing': 'safe_position',     
+        'intent.no_breathing': 'cpr'             
       }
     },
     safe_position: { type: 'final' },
@@ -948,6 +948,160 @@ export const pregnancyMachine = createMachine({
       on: {
         'intent.pregnancy.trauma_medical': 'complete',
         '*': 'complete'
+      }
+    },
+
+    complete: {
+      type: 'final'
+    }
+  }
+});
+
+/** Scenariusz 7: Cukrzyca
+ * ===================================================
+ * --- SCENARIUSZ CUKRZYCY I HIPOGLIKEMII ---
+ * ===================================================
+ **/ 
+
+// 7A. Słownik Dialogów [Cukrzyca]
+export const diabetesDialog = {
+
+  start: {
+    message: 'Ratownictwo Medyczne, dyspozytor 007, słucham?', // [cite: 75]
+    hint: 'Zgłoś zaburzenia zachowania lub nagłe osłabienie powiązane z cukrzycą (np. "Poszkodowany jest diabetykiem i bardzo dziwnie się zachowuje").' // [cite: 76]
+  },
+
+  ask_location: {
+    message: 'Proszę podać dokładny adres.', // [cite: 77]
+    hint: 'Podaj dokładny adres zdarzenia.'
+  },
+
+  ask_consciousness: {
+    message: 'Czy osoba poszkodowana jest przytomna?', // [cite: 79]
+    hint: 'Oceń przytomność (np. "Tak, siedzi na podłodze, ale bełkocze" lub "Nie, straciła przytomność").' // [cite: 80]
+  },
+
+  // --- GAŁĄŹ: NIEPRZYTOMNA ---
+  ask_breathing: {
+    message: 'Czy osoba poszkodowana oddycha?', // [cite: 51]
+    hint: 'Oceń oddech (np. "Tak, oddycha" lub "Nie słyszę oddechu").'
+  },
+  safe_position_glucagon: {
+    message: 'Proszę ułożyć osobę poszkodowaną w pozycji bocznej bezpiecznej. Jeśli posiadają Państwo glukagon i potrafią go użyć, użycie go w tym wypadku jest uzasadnione. Proszę czekać na przyjazd karetki.', // [cite: 48, 50, 51]
+    hint: 'Oczekuj na przyjazd karetki. Rozważ podanie glukagonu domięśniowo.' // [cite: 48, 49]
+  },
+  cpr: {
+    message: 'Proszę natychmiast rozpocząć uciskanie klatki piersiowej. Zespół ratownictwa jest już w drodze.', // [cite: 51]
+    hint: 'Rozpocznij RKO.'
+  },
+
+  // --- GAŁĄŹ: PRZYTOMNA (WYWIAD MEDYCZNY) ---
+  ask_sugar_level: {
+    message: 'Czy oznaczono poziom glukozy? Jeśli tak, to jaki jest wynik i kiedy go dokonano?', // [cite: 53]
+    hint: 'Podaj wynik z glukometru, pompy lub aplikacji sensorowej (np. "Przed chwilą pokazał 35 mg/dl").' // [cite: 54, 82]
+  },
+
+  ask_behavior_skin: {
+    message: 'Czy u osoby poszkodowanej występują zaburzenia świadomości, mowy lub widzenia? Jak wyglądają powłoki skórne – czy jest spocona lub blada?', // [cite: 57, 58]
+    hint: 'Opisz zachowanie i wygląd skóry (np. "Jest zlany zimnym potem, blady i agresywny").' // [cite: 80]
+  },
+
+  ask_breathing_difficulties: {
+    message: 'Czy osoba poszkodowana ma trudności w oddychaniu?', // [cite: 59]
+    hint: 'Poinformuj o ewentualnej duszności (np. "Oddycha normalnie" lub "Ma ciężki oddech").'
+  },
+
+  ask_insulin_history: {
+    message: 'Czy poszkodowany przyjmuje insulinę lub leczy się na coś jeszcze?', // [cite: 60, 61]
+    hint: 'Potwierdź leki (np. "Tak, bierze insulinę na stałe").' // [cite: 84]
+  },
+
+  ask_give_sugar: {
+    message: 'Zgłoszenie przyjęte, proszę czekać na zespół ratownictwa medycznego. Czy poszkodowany jest w stanie bezpiecznie przełykać? Jeśli tak, proszę podać coś słodkiego do picia i uważać, żeby się nie zadławił.', // [cite: 64, 85, 86, 88, 90]
+    hint: 'Spróbuj podać słodki napój lub cukier, jeśli osoba może to bezpiecznie połknąć.' // [cite: 64, 88]
+  },
+
+  complete: {
+    message: 'Dobrze. Proszę nie zostawiać poszkodowanego samego. Jeśli mimo podania cukru nie będzie kontaktu lub pacjent straci przytomność, proszę natychmiast dzwonić. Rozłączam się.', // [cite: 72, 90, 91]
+    hint: 'Obserwuj stan poszkodowanego. Połączenie zakończone.'
+  }
+};
+
+// 7B. Maszyna Stanów [Cukrzyca]
+export const diabetesMachine = createMachine({
+  id: 'diabetes',
+  initial: 'start',
+
+  states: {
+    start: {
+      on: { 'intent.diabetes.report': 'ask_location' }
+    },
+
+    ask_location: {
+      on: {
+        'USER_PROVIDED_LOCATION': {
+          target: 'ask_consciousness',
+          actions: assign({
+            location: ({ event }) => event.text 
+          })
+        }
+      }
+    },
+
+    ask_consciousness: {
+      on: {
+        'intent.conscious': 'ask_sugar_level',
+        'intent.unconscious': 'ask_breathing'
+      }
+    },
+
+    // --- GAŁĄŹ: NIEPRZYTOMNY ---
+    ask_breathing: {
+      on: {
+        'intent.breathing': 'safe_position_glucagon',     
+        'intent.no_breathing': 'cpr'             
+      }
+    },
+    safe_position_glucagon: { type: 'final' },
+    cpr: { type: 'final' },
+
+    // --- GAŁĄŹ: PRZYTOMNY (Wywiad ciągły) ---
+    ask_sugar_level: {
+      on: { 
+        'intent.diabetes.sugar_measured': 'ask_behavior_skin',
+        'intent.diabetes.sugar_not_measured': 'ask_behavior_skin',
+        '*': 'ask_behavior_skin' 
+      }
+    },
+
+    ask_behavior_skin: {
+      on: { 
+        'intent.diabetes.behavior_skin_issues': 'ask_breathing_difficulties',
+        '*': 'ask_breathing_difficulties'
+      }
+    },
+
+    ask_breathing_difficulties: {
+      on: { 
+        'intent.diabetes.breathing_issues': 'ask_insulin_history',
+        'intent.diabetes.no_breathing_issues': 'ask_insulin_history',
+        '*': 'ask_insulin_history'
+      }
+    },
+
+    ask_insulin_history: {
+      on: {
+        'intent.diabetes.takes_insulin': 'ask_give_sugar',
+        'intent.diabetes.no_insulin': 'ask_give_sugar',
+        '*': 'ask_give_sugar'
+      }
+    },
+
+    ask_give_sugar: {
+      on: { 
+        'intent.diabetes.give_sugar_yes': 'complete',
+        'intent.diabetes.give_sugar_no': 'complete',
+        '*': 'complete' 
       }
     },
 
