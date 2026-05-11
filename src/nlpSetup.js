@@ -550,6 +550,45 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'ma sine palce i nos', 'intent.hypothermia.skin');
   nlp.addDocument('pl', 'skóra na nogach jest twarda jak lód', 'intent.hypothermia.skin');
 
+  /** Scenariusz: Paraliż, bełkotliwa mowa
+   * ===========================
+   * --- INTENCJE DOT. UDARU ---
+   * ===========================
+   **/ 
+
+  // Zgłoszenie paraliżu/bełkotu
+  nlp.addDocument('pl', 'osoba poszkodowana nagle zaczęła dziwnie mówić i bełkotać', 'intent.paralysis.report');
+  nlp.addDocument('pl', 'ma trudności z wypowiedzeniem słowa i opadniętą twarz', 'intent.paralysis.report');
+  nlp.addDocument('pl', 'nie można go zrozumieć, jakby miał kluchy w buzi', 'intent.paralysis.report');
+  nlp.addDocument('pl', 'tata upuścił widelec i nie może ruszyć ręką', 'intent.paralysis.report');
+
+  // Twarz i mowa (FAST - Face/Speech)
+  nlp.addDocument('pl', 'tak kącik ust jej zupełnie opadł', 'intent.paralysis.face_speech');
+  nlp.addDocument('pl', 'twarz jest niesymetryczna przy uśmiechu', 'intent.paralysis.face_speech');
+  nlp.addDocument('pl', 'mówi bardzo niewyraźnie i powoli', 'intent.paralysis.face_speech');
+  nlp.addDocument('pl', 'nie może się uśmiechnąć prosto', 'intent.paralysis.face_speech');
+
+  // Ręce i nogi (FAST - Arms)
+  nlp.addDocument('pl', 'prawa ręka od razu opada przy próbie podniesienia', 'intent.paralysis.arms');
+  nlp.addDocument('pl', 'nie ma w ogóle siły w lewej stronie ciała', 'intent.paralysis.arms');
+  nlp.addDocument('pl', 'obie ręce trzymają się na tej samej wysokości', 'intent.paralysis.arms');
+  nlp.addDocument('pl', 'nie może podnieść prawej nogi', 'intent.paralysis.arms');
+
+  // Czas wystąpienia (FAST - Time)
+  nlp.addDocument('pl', 'to się stało przed chwilą jakieś dziesięć minut temu', 'intent.paralysis.onset_time');
+  nlp.addDocument('pl', 'ostatni raz widziałem go zdrowego rano', 'intent.paralysis.onset_time');
+  nlp.addDocument('pl', 'trwa to od około godziny', 'intent.paralysis.onset_time');
+
+  // Wizja i ból głowy
+  nlp.addDocument('pl', 'mówi że przestała widzieć na jedno oko', 'intent.paralysis.vision_balance');
+  nlp.addDocument('pl', 'ma bardzo silny ból głowy i kręci mu się w głowie', 'intent.paralysis.vision_balance');
+  nlp.addDocument('pl', 'nie może utrzymać równowagi i zatacza się', 'intent.paralysis.vision_balance');
+
+  // Historia i cukrzyca
+  nlp.addDocument('pl', 'choruje na cukrzycę i bierze insulinę', 'intent.paralysis.history');
+  nlp.addDocument('pl', 'leczy się na nadciśnienie tętnicze', 'intent.paralysis.history');
+  nlp.addDocument('pl', 'nie czuć od niego alkoholu', 'intent.paralysis.history');
+
   await nlp.train();
   return nlp;
 }

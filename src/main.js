@@ -13,6 +13,7 @@ import { lyingMachine, lyingDialog } from './scenarios/lying.js';
 import { unconsciousMachine, unconsciousDialog } from './scenarios/unconscious.js';
 import { burnsMachine, burnsDialog } from './scenarios/burns.js';
 import { hypothermiaMachine, hypothermiaDialog } from './scenarios/hypothermia.js';
+import { paralysisMachine, paralysisDialog } from './scenarios/paralysis.js';
 
 import { setupNLP } from './nlpSetup.js';
 import { icons } from './icons.js'; // Zaimportuj ikony
@@ -110,6 +111,13 @@ const scenarioRegistry = {
     icon: icons.placeholder, // Ścieżka do SVG
     title: 'Hipotermia', 
     desc: 'Hipotermia, czyli obniżenie temperatury ciała poniżej normy, może prowadzić do poważnych komplikacji zdrowotnych. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.'
+  },
+  'paralysis': {
+    machine: paralysisMachine,
+    dialog: paralysisDialog,
+    icon: icons.placeholder, // Ścieżka do SVG
+    title: 'Paraliż', 
+    desc: 'Paraliż, czyli utrata zdolności ruchowych, może być objawem poważnych schorzeń neurologicznych. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.'
   }
 };
 
