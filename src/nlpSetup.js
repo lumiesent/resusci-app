@@ -517,6 +517,39 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'skóra jest biała i twarda', 'intent.burns.details');
   nlp.addDocument('pl', 'ma poparzone krocze i brzuch', 'intent.burns.details');
 
+  /** Scenariusz: Hipotermia
+   * ================================
+   * --- INTENCJE DOT. HIPOTERMII ---
+   * ================================
+   **/ 
+
+  // Zgłoszenie
+  nlp.addDocument('pl', 'osoba poszkodowana jest bardzo zimna i cały się trzęsie', 'intent.hypothermia.report');
+  nlp.addDocument('pl', 'znalazłem bezdomnego na ławce, jest wychłodzony', 'intent.hypothermia.report');
+  nlp.addDocument('pl', 'dziecko wpadło do lodowatej wody', 'intent.hypothermia.report');
+  nlp.addDocument('pl', 'starsza pani leżała całą noc w nieogrzewanym domu', 'intent.hypothermia.report');
+
+  // Czas ekspozycji
+  nlp.addDocument('pl', 'przebywa na zewnątrz od kilku godzin', 'intent.hypothermia.exposure_time');
+  nlp.addDocument('pl', 'leżał tam całą noc', 'intent.hypothermia.exposure_time');
+  nlp.addDocument('pl', 'wyszedł rano na grzyby i teraz go znalazłem', 'intent.hypothermia.exposure_time');
+
+  // Objawy (dreszcze, zachowanie, mowa)
+  nlp.addDocument('pl', 'cały się trzęsie i nie może ustać na nogach', 'intent.hypothermia.symptoms');
+  nlp.addDocument('pl', 'przestał mieć dreszcze mimo że jest mu zimno', 'intent.hypothermia.symptoms');
+  nlp.addDocument('pl', 'jest splątany i mówi bardzo niewyraźnie', 'intent.hypothermia.symptoms');
+  nlp.addDocument('pl', 'jest bardzo agresywny i pobudzony', 'intent.hypothermia.symptoms');
+
+  // Ból i oddech
+  nlp.addDocument('pl', 'skarży się na silny ból w klatce piersiowej', 'intent.hypothermia.vitals');
+  nlp.addDocument('pl', 'ma duszność i ciężko mu się oddycha', 'intent.hypothermia.vitals');
+  nlp.addDocument('pl', 'oddycha bardzo szybko i płytko', 'intent.hypothermia.vitals');
+
+  // Odmrożenia i skóra
+  nlp.addDocument('pl', 'palce u rąk są zupełnie białe i sztywne', 'intent.hypothermia.skin');
+  nlp.addDocument('pl', 'ma sine palce i nos', 'intent.hypothermia.skin');
+  nlp.addDocument('pl', 'skóra na nogach jest twarda jak lód', 'intent.hypothermia.skin');
+
   await nlp.train();
   return nlp;
 }
