@@ -406,6 +406,38 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'od tygodnia ma spuchniętą nogę', 'intent.dyspnea.details');
   nlp.addDocument('pl', 'kaszle krwią', 'intent.dyspnea.details');
 
+  /** Scenariusz: Krwotok
+   * ==============================
+   * --- INTENCJE DOT. KRWOTOKU ---
+   * ==============================
+   **/ 
+
+  // Zgłoszenie krwotoku
+  nlp.addDocument('pl', 'osoba poszkodowana bardzo mocno krwawi z nogi', 'intent.hemorrhage.report');
+  nlp.addDocument('pl', 'krew tryska pod ciśnieniem', 'intent.hemorrhage.report');
+  nlp.addDocument('pl', 'jest głęboka rana cięta i mnóstwo krwi', 'intent.hemorrhage.report');
+  nlp.addDocument('pl', 'osoba poszkodowana została dźgnięta nożem', 'intent.hemorrhage.report');
+
+  // Bezpieczeństwo i okoliczności
+  nlp.addDocument('pl', 'jest bezpiecznie, nikt nas nie atakuje', 'intent.hemorrhage.safety_ok');
+  nlp.addDocument('pl', 'to był wypadek przy pracy piłą', 'intent.hemorrhage.crime_accident');
+  nlp.addDocument('pl', 'ktoś ją napadł w bramie', 'intent.hemorrhage.crime_accident');
+
+  // Szczegóły krwawienia
+  nlp.addDocument('pl', 'krew jest jasnoczerwona i pulsuje', 'intent.hemorrhage.details');
+  nlp.addDocument('pl', 'to rana na przedramieniu, krew płynie ciurkiem', 'intent.hemorrhage.details');
+  nlp.addDocument('pl', 'rana jest w pachwinie', 'intent.hemorrhage.details');
+
+  // Objawy wstrząsu
+  nlp.addDocument('pl', 'jest bardzo blada i cała spocona', 'intent.hemorrhage.shock_symptoms');
+  nlp.addDocument('pl', 'robi się bardzo senny i podsypia', 'intent.hemorrhage.shock_symptoms');
+  nlp.addDocument('pl', 'skóra jest zimna i wilgotna', 'intent.hemorrhage.shock_symptoms');
+
+  // Leki przeciwkrzepliwe
+  nlp.addDocument('pl', 'tak, bierze leki na rozrzedzenie krwi', 'intent.hemorrhage.meds');
+  nlp.addDocument('pl', 'przyjmuje acenokumarol', 'intent.hemorrhage.meds');
+  nlp.addDocument('pl', 'nie wiem czy bierze jakieś leki', 'intent.hemorrhage.meds');
+
   await nlp.train();
   return nlp;
 }

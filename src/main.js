@@ -8,6 +8,7 @@ import { pregnancyMachine, pregnancyDialog } from './scenarios/pregnancy.js';
 import { diabetesMachine, diabetesDialog } from './scenarios/diabetes.js';
 import { seizuresMachine, seizuresDialog } from './scenarios/seizures.js';
 import { dyspneaMachine, dyspneaDialog } from './scenarios/dyspnea.js';
+import { hemorrhageMachine, hemorrhageDialog } from './scenarios/hemorrhage.js';
 
 import { setupNLP } from './nlpSetup.js';
 import { icons } from './icons.js'; // Zaimportuj ikony
@@ -70,6 +71,13 @@ const scenarioRegistry = {
     icon: icons.placeholder, // Ścieżka do SVG
     title: 'Duszność', 
     desc: 'Duszność może być objawem wielu schorzeń, w tym chorób serca i płuc. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.' 
+  },
+  'hemorrhage': { 
+    machine: hemorrhageMachine, 
+    dialog: hemorrhageDialog, 
+    icon: icons.placeholder, // Ścieżka do SVG
+    title: 'Krwotok', 
+    desc: 'Krwotok, zarówno zewnętrzny, jak i wewnętrzny, stanowi bezpośrednie zagrożenie życia. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.'
   }
 };
 
