@@ -9,6 +9,7 @@ import { diabetesMachine, diabetesDialog } from './scenarios/diabetes.js';
 import { seizuresMachine, seizuresDialog } from './scenarios/seizures.js';
 import { dyspneaMachine, dyspneaDialog } from './scenarios/dyspnea.js';
 import { hemorrhageMachine, hemorrhageDialog } from './scenarios/hemorrhage.js';
+import { lyingMachine, lyingDialog } from './scenarios/lying.js';
 
 import { setupNLP } from './nlpSetup.js';
 import { icons } from './icons.js'; // Zaimportuj ikony
@@ -78,6 +79,13 @@ const scenarioRegistry = {
     icon: icons.placeholder, // Ścieżka do SVG
     title: 'Krwotok', 
     desc: 'Krwotok, zarówno zewnętrzny, jak i wewnętrzny, stanowi bezpośrednie zagrożenie życia. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.'
+  },
+  'lying': { 
+    machine: lyingMachine, 
+    dialog: lyingDialog, 
+    icon: icons.placeholder, // Ścieżka do SVG
+    title: 'Osoba Leżąca', 
+    desc: 'Osoba leżąca, zwłaszcza nieprzytomna, wymaga szybkiej oceny stanu zdrowia i podjęcia odpowiednich działań ratunkowych.' 
   }
 };
 

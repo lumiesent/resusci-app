@@ -2,29 +2,6 @@ import { containerBootstrap } from '@nlpjs/core';
 import { Nlp } from '@nlpjs/nlp';
 import { LangPl } from '@nlpjs/lang-pl';
 
-/** NOTATKI DLA PROGRAMISTY:
- * 
- * Ten plik jest miejscem, gdzie definiujesz "mózg" bota, czyli jego zdolność do rozumienia języka naturalnego.
- * Funkcja setupNLP() jest asynchroniczna, ponieważ trenowanie modelu NLP może zająć chwilę. W main.js
- * wyświetlamy komunikat "Ładowanie sztucznej inteligencji..." dopóki Promise się nie rozwiąże.
- * 
- * JAK DODAĆ NOWY SCENARIUSZ (Krok 2):
- * Dodaj tutaj nowe przykładowe wypowiedzi użytkownika i przypisz im nowe intencje, np.:
- * nlp.addDocument('pl', 'Pali się dom na ulicy Długiej', 'intent.fire.report');
- * TRENOWANIE SIECI (Dodawanie tzw. Utterances - Przykładowych Wypowiedzi)
- * Składnia: nlp.addDocument('język', 'Przykładowe zdanie użytkownika', 'nazwa.intencji');
- * 
- * UWAGA: 'nazwa.intencji' (np. 'intent.emergency.report') to DOKŁADNIE TEN SAM KLUCZ,
- * którego użyłeś w bloku 'on' w pliku scenario.js! To w ten sposób moduły ze sobą "gadają".
- * 
- * JAK DODAĆ NOWY SCENARIUSZ (Krok 3):
- * Dodaj tutaj nowe przykładowe wypowiedzi użytkownika i przypisz im nowe intencje, np.:
- * nlp.addDocument('pl', 'Pali się dom na ulicy Długiej', 'intent.fire.report');
- * 
- * Trenowanie modelu. To funkcja asynchroniczna, dlatego w main.js wyświetlamy
- * komunikat "Ładowanie sztucznej inteligencji..." dopóki Promise się nie rozwiąże.
- */
-
 export async function setupNLP() {
   // Inicjalizacja środowiska NLP.js
   const container = await containerBootstrap();
@@ -133,9 +110,9 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'Bierze na stałe leki na serce', 'intent.stomach.regular_medication_takes');
 
   /** Scenariusz 4: Ból Głowy
-   * ==================================
+   * ================================
    * --- INTENCJE DOT. BÓLU GŁOWY ---
-   * ==================================
+   * ================================
    **/ 
 
   // Zgłoszenie bólu głowy
@@ -188,9 +165,9 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'Nigdy wcześniej nie było takich problemów, to pierwszy raz.', 'intent.headache.no_history');
   
   /** Scenariusz 5: Ból Kręgosłupa, Pleców
-   * ===============================================
+   * ==============================================
    * --- INTENCJE DOT. BÓLU KRĘGOSŁUPA I PLECÓW ---
-   * ===============================================
+   * ==============================================
    **/ 
 
   // Zgłoszenie
@@ -249,9 +226,9 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'Nie, to zdrowy człowiek, na nic nie choruje.', 'intent.backpain.no_medical_history');
 
   /** Scenariusz 6: Ciąża, poród, poronienie
-   * ===============================================
+   * ====================================
    * --- INTENCJE DOT. CIĄŻY I PORODU ---
-   * ===============================================
+   * ====================================
    **/ 
 
   // Zgłoszenie
@@ -297,9 +274,9 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'Jest w pełni zdrowa, żadnego urazu nie było.', 'intent.pregnancy.trauma_medical');
 
   /** Scenariusz 7: Cukrzyca
-   * ===============================================
+   * ==================================================
    * --- INTENCJE DOT. CUKRZYCY I ZABURZEŃ GLIKEMII ---
-   * ===============================================
+   * ==================================================
    **/ 
 
   // Zgłoszenie
@@ -437,6 +414,45 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'tak, bierze leki na rozrzedzenie krwi', 'intent.hemorrhage.meds');
   nlp.addDocument('pl', 'przyjmuje acenokumarol', 'intent.hemorrhage.meds');
   nlp.addDocument('pl', 'nie wiem czy bierze jakieś leki', 'intent.hemorrhage.meds');
+
+  /** Scenariusz: Osoba leżąca
+   * ===================================
+   * --- INTENCJE DOT. OSOBY LEŻĄCEJ ---
+   * ===================================
+   **/ 
+
+  // Zgłoszenie
+  nlp.addDocument('pl', 'widzę mężczyznę który leży na trawniku', 'intent.lying.report');
+  nlp.addDocument('pl', 'ktoś leży przed klatką i się nie rusza', 'intent.lying.report');
+  nlp.addDocument('pl', 'zauważyłem osobę leżącą w rowie', 'intent.lying.report');
+  nlp.addDocument('pl', 'na przystanku leży kobieta, ma rozsypane zakupy', 'intent.lying.report');
+
+  // Okoliczności i bezpieczeństwo
+  nlp.addDocument('pl', 'to nie był wypadek, po prostu leży', 'intent.lying.safety_ok');
+  nlp.addDocument('pl', 'nie widać zagrożeń w pobliżu', 'intent.lying.safety_ok');
+  nlp.addDocument('pl', 'chyba go prąd poraził bo leży przy kablach', 'intent.lying.circumstances');
+  nlp.addDocument('pl', 'wygląda to na potrącenie', 'intent.lying.circumstances');
+
+  // Stan świadomości (częściowy kontakt)
+  nlp.addDocument('pl', 'otwiera oczy ale bełkocze', 'intent.lying.partial_conscious');
+  nlp.addDocument('pl', 'nic nie pamięta i jest splątany', 'intent.lying.partial_conscious');
+  nlp.addDocument('pl', 'jest z nią utrudniony kontakt', 'intent.lying.partial_conscious');
+
+  // Urazy i krew
+  nlp.addDocument('pl', 'ma rozbitą głowę i widać krew na chodniku', 'intent.lying.trauma');
+  nlp.addDocument('pl', 'nie widzę żadnych ran ani krwi', 'intent.lying.trauma');
+  nlp.addDocument('pl', 'poszkodowany zwymiotował', 'intent.lying.trauma');
+
+  // Neurologia i mowa
+  nlp.addDocument('pl', 'skarży się na drętwienie prawej ręki', 'intent.lying.neurology');
+  nlp.addDocument('pl', 'mówi niewyraźnie i opada mu kącik ust', 'intent.lying.neurology');
+  nlp.addDocument('pl', 'kręci mu się w głowie i nic nie pamięta', 'intent.lying.neurology');
+
+  // Historia, alkohol, cukrzyca
+  nlp.addDocument('pl', 'czuć od niego silny zapach alkoholu', 'intent.lying.history');
+  nlp.addDocument('pl', 'ma przy sobie legitymację diabetyka', 'intent.lying.history');
+  nlp.addDocument('pl', 'choruje na serce', 'intent.lying.history');
+  nlp.addDocument('pl', 'jest bardzo blady i ma sine usta', 'intent.lying.history');
 
   await nlp.train();
   return nlp;
