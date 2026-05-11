@@ -644,6 +644,43 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'to się stało przed chwilą widzę że jeszcze się rusza', 'intent.hanging.time');
   nlp.addDocument('pl', 'znalazłem go dopiero teraz nie mam pojęcia o czasie', 'intent.hanging.time');
 
+  /** Scenariusz: Problemy kardiologiczne
+   * ===============================
+   * --- INTENCJE KARDIOLOGICZNE ---
+   * ===============================
+   **/ 
+
+  // Zgłoszenie
+  nlp.addDocument('pl', 'osoba poszkodowana źle się czuje i ma bardzo wysokie ciśnienie', 'intent.cardio.report');
+  nlp.addDocument('pl', 'serce jej zaraz wyskoczy z piersi', 'intent.cardio.report');
+  nlp.addDocument('pl', 'dziadek czuje się bardzo słabo i ma duszności', 'intent.cardio.report');
+  nlp.addDocument('pl', 'mama ma bardzo szybkie tętno i kołatanie serca', 'intent.cardio.report');
+
+  // Ból w klatce
+  nlp.addDocument('pl', 'mówi że ją piecze za mostkiem i ból promieniuje do ręki', 'intent.cardio.pain');
+  nlp.addDocument('pl', 'czuje silny ucisk w piersiach', 'intent.cardio.pain');
+  nlp.addDocument('pl', 'nie skarży się na żaden ból w klatce', 'intent.cardio.pain');
+
+  // Skóra i sinica
+  nlp.addDocument('pl', 'ma fioletowe usta i jest cała blada', 'intent.cardio.skin');
+  nlp.addDocument('pl', 'jest zalany zimnym potem i bardzo się poci', 'intent.cardio.skin');
+  nlp.addDocument('pl', 'skóra wygląda normalnie', 'intent.cardio.skin');
+
+  // Obrzęki
+  nlp.addDocument('pl', 'nogi są bardzo spuchnięte w kostkach', 'intent.cardio.edema');
+  nlp.addDocument('pl', 'ma ogromne obrzęki na łydkach', 'intent.cardio.edema');
+  nlp.addDocument('pl', 'nie ma żadnej opuchlizny na nogach', 'intent.cardio.edema');
+
+  // Historia i rozrusznik
+  nlp.addDocument('pl', 'ma wszczepiony rozrusznik serca', 'intent.cardio.history');
+  nlp.addDocument('pl', 'jest po zawale dwa lata temu', 'intent.cardio.history');
+  nlp.addDocument('pl', 'leczy się na nadciśnienie i niewydolność serca', 'intent.cardio.history');
+
+  // Wartości pomiarów
+  nlp.addDocument('pl', 'ciśnienie wynosi dwieście na sto dziesięć', 'intent.cardio.vitals');
+  nlp.addDocument('pl', 'ma puls ponad sto czterdzieści uderzeń na minutę', 'intent.cardio.vitals');
+  nlp.addDocument('pl', 'nie mamy jak zmierzyć ciśnienia', 'intent.cardio.vitals');
+
   await nlp.train();
   return nlp;
 }

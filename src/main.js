@@ -16,6 +16,7 @@ import { hypothermiaMachine, hypothermiaDialog } from './scenarios/hypothermia.j
 import { paralysisMachine, paralysisDialog } from './scenarios/paralysis.js';
 import { electrocutionMachine, electrocutionDialog } from './scenarios/electrocution.js';
 import { hangingMachine, hangingDialog } from './scenarios/hanging.js';
+import { cardiologyMachine, cardiologyDialog } from './scenarios/cardiology.js';
 
 import { setupNLP } from './nlpSetup.js';
 import { icons } from './icons.js'; // Zaimportuj ikony
@@ -132,8 +133,15 @@ const scenarioRegistry = {
     machine: hangingMachine,
     dialog: hangingDialog,
     icon: icons.placeholder, // Ścieżka do SVG
-    title: 'Zawieszenie', 
-    desc: 'Zawieszenie, czyli sytuacja, w której osoba jest zawieszona na czymś, co uciska szyję, może prowadzić do uduszenia i stanowi bezpośrednie zagrożenie życia. Jest to sytuacja o najwyższym stopniu krytyczności.'
+    title: 'Powieszenie', 
+    desc: 'Powieszenie, czyli sytuacja, w której osoba jest powieszona na czymś, co uciska szyję, może prowadzić do uduszenia i stanowi bezpośrednie zagrożenie życia. Jest to sytuacja o najwyższym stopniu krytyczności.'
+  },
+  'cardiology': {
+    machine: cardiologyMachine,
+    dialog: cardiologyDialog,
+    icon: icons.placeholder, // Ścieżka do SVG
+    title: 'Problemy kardiologiczne', 
+    desc: 'Problemy kardiologiczne, takie jak zawał serca czy arytmia, mogą prowadzić do nagłego zatrzymania krążenia i stanowią bezpośrednie zagrożenie życia. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.'
   }
 };
 
