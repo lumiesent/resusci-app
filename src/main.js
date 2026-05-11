@@ -14,6 +14,7 @@ import { unconsciousMachine, unconsciousDialog } from './scenarios/unconscious.j
 import { burnsMachine, burnsDialog } from './scenarios/burns.js';
 import { hypothermiaMachine, hypothermiaDialog } from './scenarios/hypothermia.js';
 import { paralysisMachine, paralysisDialog } from './scenarios/paralysis.js';
+import { electrocutionMachine, electrocutionDialog } from './scenarios/electrocution.js';
 
 import { setupNLP } from './nlpSetup.js';
 import { icons } from './icons.js'; // Zaimportuj ikony
@@ -118,6 +119,13 @@ const scenarioRegistry = {
     icon: icons.placeholder, // Ścieżka do SVG
     title: 'Paraliż', 
     desc: 'Paraliż, czyli utrata zdolności ruchowych, może być objawem poważnych schorzeń neurologicznych. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.'
+  },
+  'electrocution': {
+    machine: electrocutionMachine,
+    dialog: electrocutionDialog,
+    icon: icons.placeholder, // Ścieżka do SVG
+    title: 'Porażenie prądem', 
+    desc: 'Porażenie prądem, zwłaszcza wysokim napięciem, może prowadzić do poważnych obrażeń i stanowi bezpośrednie zagrożenie życia. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe, jednak najważniejsze jest twoje bezpieczeństwo.'
   }
 };
 

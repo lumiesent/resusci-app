@@ -589,6 +589,38 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'leczy się na nadciśnienie tętnicze', 'intent.paralysis.history');
   nlp.addDocument('pl', 'nie czuć od niego alkoholu', 'intent.paralysis.history');
 
+  /** Scenariusz: Porażenie prądem, piorunem
+   * ===============================
+   * --- INTENCJE DOT. PORAŻENIA ---
+   * ===============================
+   **/ 
+
+  // Zgłoszenie
+  nlp.addDocument('pl', 'osoba poszkodowana została porażona prądem', 'intent.electrocution.report');
+  nlp.addDocument('pl', 'mąż naprawiał gniazdko i nagle go odrzuciło', 'intent.electrocution.report');
+  nlp.addDocument('pl', 'piorun uderzył w drzewo obok i kolega upadł', 'intent.electrocution.report');
+  nlp.addDocument('pl', 'dziecko włożyło drut do kontaktu', 'intent.electrocution.report');
+
+  // Bezpieczeństwo i odłączenie prądu
+  nlp.addDocument('pl', 'wyłączyłem bezpieczniki w całym domu', 'intent.electrocution.safety_confirmed');
+  nlp.addDocument('pl', 'wyciągnąłem wtyczkę urządzenia z gniazdka', 'intent.electrocution.safety_confirmed');
+  nlp.addDocument('pl', 'prąd jest już odcięty, jest bezpiecznie', 'intent.electrocution.safety_confirmed');
+
+  // Serce i klatka piersiowa
+  nlp.addDocument('pl', 'mówi że serce bije mu jak szalone i nierówno', 'intent.electrocution.heart_symptoms');
+  nlp.addDocument('pl', 'skarży się na bardzo silny ból w klatce piersiowej', 'intent.electrocution.heart_symptoms');
+  nlp.addDocument('pl', 'czuje kołatanie w piersiach', 'intent.electrocution.heart_symptoms');
+
+  // Uraz i neurologia (upadek, czucie)
+  nlp.addDocument('pl', 'spadł z drabiny po tym jak go prąd kopnął', 'intent.electrocution.trauma_neuro');
+  nlp.addDocument('pl', 'mówi że nie czuje nóg i nie może nimi ruszać', 'intent.electrocution.trauma_neuro');
+  nlp.addDocument('pl', 'rusza rękami i nogami normalnie', 'intent.electrocution.trauma_neuro');
+
+  // Oparzenia
+  nlp.addDocument('pl', 'ma czarne plamy na dłoniach i na stopach', 'intent.electrocution.burns');
+  nlp.addDocument('pl', 'widać spaloną skórę w miejscu gdzie dotknął kabla', 'intent.electrocution.burns');
+  nlp.addDocument('pl', 'nie widzę żadnych oparzeń na ciele', 'intent.electrocution.burns');
+
   await nlp.train();
   return nlp;
 }
