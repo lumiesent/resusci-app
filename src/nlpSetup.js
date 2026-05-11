@@ -340,7 +340,41 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'Tak, pije właśnie słodki sok.', 'intent.diabetes.give_sugar_yes'); // [cite: 89]
   nlp.addDocument('pl', 'Daliśmy mu cukier i jest w stanie przełykać.', 'intent.diabetes.give_sugar_yes');
   nlp.addDocument('pl', 'Nie jest w stanie nic przełknąć, wypluwa wszystko.', 'intent.diabetes.give_sugar_no'); // [cite: 64]
-  
+
+  /** Scenariusz: Drgawki
+   * ==============================
+   * --- INTENCJE DOT. DRGAWEK ---
+   * ==============================
+   **/ 
+
+  // Zgłoszenie
+  nlp.addDocument('pl', 'mój syn nagle upadł i cały się trzęsie', 'intent.seizures.report');
+  nlp.addDocument('pl', 'Mężczyzna na przystanku ma drgawki, z buzi leci mu piana', 'intent.seizures.report');
+  nlp.addDocument('pl', 'Osoba poszkodowana ma atak, rzuca nią o ziemię', 'intent.seizures.report');
+  nlp.addDocument('pl', 'Przestał się trząść, ale jest nieprzytomny', 'intent.seizures.report');
+
+  // Bezpieczeństwo
+  nlp.addDocument('pl', 'Jest bezpiecznie, nie ma prądu ani gazu', 'intent.seizures.safety_ok');
+  nlp.addDocument('pl', 'Doszło do porażenia prądem', 'intent.seizures.safety_hazard');
+
+  // Czy trwają drgawki
+  nlp.addDocument('pl', 'Tak, właśnie bardzo mocno drga', 'intent.seizures.ongoing');
+  nlp.addDocument('pl', 'Nie, drgawki już ustąpiły', 'intent.seizures.ended');
+
+  // Historia i szczegóły
+  nlp.addDocument('pl', 'Choruje na padaczkę od lat', 'intent.seizures.history');
+  nlp.addDocument('pl', 'To kobieta w ciąży', 'intent.seizures.history');
+  nlp.addDocument('pl', 'Ma bardzo wysoką gorączkę', 'intent.seizures.history');
+
+  // Czas i urazy
+  nlp.addDocument('pl', 'Trwało to około trzy minuty', 'intent.seizures.details');
+  nlp.addDocument('pl', 'Uderzył się mocno w głowę o chodnik', 'intent.seizures.details');
+
+  // Objawy (mocz, język)
+  nlp.addDocument('pl', 'Popuścił mocz i ugryzł się w język', 'intent.seizures.symptoms');
+  nlp.addDocument('pl', 'Widzę krew w ustach', 'intent.seizures.symptoms');
+
+
   await nlp.train();
   return nlp;
 }

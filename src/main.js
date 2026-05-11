@@ -6,6 +6,7 @@ import { headacheMachine, headacheDialog } from './scenarios/headache.js';
 import { backpainMachine, backpainDialog } from './scenarios/backpain.js';
 import { pregnancyMachine, pregnancyDialog } from './scenarios/pregnancy.js';
 import { diabetesMachine, diabetesDialog } from './scenarios/diabetes.js';
+import { seizuresMachine, seizuresDialog } from './scenarios/seizures.js';
 
 import { setupNLP } from './nlpSetup.js';
 import { icons } from './icons.js'; // Zaimportuj ikony
@@ -54,6 +55,13 @@ const scenarioRegistry = {
     icon: icons.placeholder, // Ścieżka do SVG
     title: 'Cukrzyca', 
     desc: 'Zaburzenia glikemii mogą prowadzić do stanów zagrożenia życia. Kluczowe jest szybkie rozpoznanie i podjęcie działań ratunkowych.' 
+  },
+  'seizures': { 
+    machine: seizuresMachine, 
+    dialog: seizuresDialog, 
+    icon: icons.placeholder, // Ścieżka do SVG
+    title: 'Drgawki', 
+    desc: 'Ataki drgawkowe mogą być objawem poważnych schorzeń neurologicznych. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.' 
   }
 };
 
