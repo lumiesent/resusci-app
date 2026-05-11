@@ -10,12 +10,12 @@ import { createMachine, assign } from 'xstate';
 export const allergyDialog = {
   start: {
     message: 'Ratownictwo Medyczne, dyspozytor 81, słucham',
-    hint: 'Powiedz co się dzieje, zgłoś reakcję alergiczną (np. "[osoba] zjadła orzechy i zaczyna się dusić.").'
+    hint: 'Przedstaw swoją lokalizację, podaj adres lub opisz swoje otoczenie, czy znajduje się w pobliżu jakiś znany punkt odniesienia?'
   },
 
-  ask_location: {
-    message: 'Proszę podać dokładny adres.',
-    hint: 'Przedstaw swoją lokalizację, podaj adres lub opisz swoje otoczenie, czy znajduje się w pobliżu jakiś znany punkt odniesienia?'
+  ask_situation: {
+    message: 'Dobrze, co się stało?.',
+    hint: 'Powiedz co się dzieje, zgłoś reakcję alergiczną (np. "[osoba] zjadła orzechy i zaczyna się dusić.").'
   },
 
   ask_consciousness: {
@@ -86,18 +86,21 @@ export const allergyMachine = createMachine({
 
   states: {
     start: {
-      on: { 'intent.allergy.report': 'ask_location' }
-    },
-
-    ask_location: {
       on: {
         'USER_PROVIDED_LOCATION': {
-          target: 'ask_consciousness',
+          target: 'ask_situation',
           actions: assign({
             location: ({ event }) => event.text 
           })
         }
       }
+    },
+
+    ask_situation: {
+      on: { 
+        'intent.allergy.report': 'ask_consciousness',
+        '*': 'ask_consciousness'
+      },
     },
 
     ask_consciousness: {

@@ -9,13 +9,13 @@ import { createMachine, assign } from 'xstate';
 // Słownik Dialogów [Ból Głowy]
 export const headacheDialog = {
   start: {
-    message: 'Ratownictwo Medyczne, dyspozytor 88, słucham?',
-    hint: 'Zgłoś silny ból głowy poszkodowanego (np. "Osoba poszkodowana bardzo źle się czuje. Ma straszny ból głowy.").'
+    message: 'Ratownictwo Medyczne, dyspozytor 81, słucham',
+    hint: 'Przedstaw swoją lokalizację, podaj adres lub opisz swoje otoczenie, czy znajduje się w pobliżu jakiś znany punkt odniesienia?'
   },
 
-  ask_location: {
-    message: 'Proszę podać dokładny adres.',
-    hint: 'Przedstaw swoją lokalizację, podaj adres.'
+  ask_situation: {
+    message: 'Dobrze, co się stało?.',
+    hint: 'Powiedz co się dzieje, zgłoś ból głowy (np. "Osoba skarży się na silny ból głowy").'
   },
 
   ask_consciousness: {
@@ -86,18 +86,22 @@ export const headacheMachine = createMachine({
 
   states: {
     start: {
-      on: { 'intent.headache.report': 'ask_location' }
-    },
-
-    ask_location: {
       on: {
         'USER_PROVIDED_LOCATION': {
-          target: 'ask_consciousness',
+          target: 'ask_situation',
           actions: assign({
             location: ({ event }) => event.text 
           })
         }
       }
+    },
+
+    ask_situation: {
+      on: { 
+        'intent.headache.report': 'ask_consciousness',
+        '*': 'ask_consciousness'
+      },
+      
     },
 
     ask_consciousness: {

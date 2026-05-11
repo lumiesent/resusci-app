@@ -9,13 +9,13 @@ import { createMachine, assign } from 'xstate';
 // Słownik Dialogów [Ciąża, poród, poronienie]
 export const pregnancyDialog = {
   start: {
-    message: 'Ratownictwo Medyczne, dyspozytor 70, słucham?',
-    hint: 'Zgłoś rozpoczęcie akcji porodowej, skurcze lub krwawienie u poszkodowanej (np. "Poszkodowana zaczęła rodzić! Odeszły jej wody i ma bardzo silne skurcze").'
+    message: 'Ratownictwo Medyczne, dyspozytor 81, słucham',
+    hint: 'Przedstaw swoją lokalizację, podaj adres lub opisz swoje otoczenie, czy znajduje się w pobliżu jakiś znany punkt odniesienia?'
   },
 
-  ask_location: {
-    message: 'Proszę podać dokładny adres.',
-    hint: 'Podaj dokładny adres zdarzenia.'
+  ask_situation: {
+    message: 'Dobrze, co się stało?.',
+    hint: 'Powiedz co się dzieje, zgłoś problem związany z ciążą (np. "Poszkodowana jest w ciąży i ma silne bóle brzucha").'
   },
 
   ask_consciousness: {
@@ -81,18 +81,22 @@ export const pregnancyMachine = createMachine({
 
   states: {
     start: {
-      on: { 'intent.pregnancy.report': 'ask_location' }
-    },
-
-    ask_location: {
       on: {
         'USER_PROVIDED_LOCATION': {
-          target: 'ask_consciousness',
+          target: 'ask_situation',
           actions: assign({
             location: ({ event }) => event.text 
           })
         }
       }
+    },
+
+    ask_situation: {
+      on: { 
+        'intent.pregnancy.report': 'ask_consciousness',
+        '*': 'ask_consciousness'
+      },
+      '*': 'ask_consciousness'
     },
 
     ask_consciousness: {

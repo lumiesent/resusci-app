@@ -9,13 +9,13 @@ import { createMachine, assign } from 'xstate';
 // Słownik Dialogów [Ból brzucha]
 export const stomachDialog = {
   start: {
-    message: 'Ratownictwo Medyczne, dyspozytor 67, słucham.',
-    hint: 'Zgłoś silny ból brzucha (np. "[osoba] ma potworny ból brzucha").'
+    message: 'Ratownictwo Medyczne, dyspozytor 81, słucham',
+    hint: 'Przedstaw swoją lokalizację, podaj adres lub opisz swoje otoczenie, czy znajduje się w pobliżu jakiś znany punkt odniesienia?'
   },
 
-  ask_location: {
-    message: 'Proszę podać dokładny adres.',
-    hint: 'Przedstaw swoją lokalizację, podaj adres lub opisz swoje otoczenie, czy znajduje się w pobliżu jakiś znany punkt odniesienia?'
+  ask_situation: {
+    message: 'Dobrze, co się stało?.',
+    hint: 'Powiedz co się dzieje, zgłoś ból brzucha (np. "Osoba skarży się na silny ból brzucha").'
   },
 
   ask_consciousness: {
@@ -81,18 +81,21 @@ export const stomachMachine = createMachine({
 
   states: {
     start: {
-      on: { 'intent.stomach.report': 'ask_location' }
-    },
-
-    ask_location: {
       on: {
         'USER_PROVIDED_LOCATION': {
-          target: 'ask_consciousness',
+          target: 'ask_situation',
           actions: assign({
             location: ({ event }) => event.text 
           })
         }
       }
+    },
+
+    ask_situation: {
+      on: { 
+        'intent.stomach.report': 'ask_consciousness',
+        '*': 'ask_consciousness'
+      },
     },
 
     ask_consciousness: {

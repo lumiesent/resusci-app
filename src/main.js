@@ -186,7 +186,7 @@ async function handleUserInput() {
   const currentState = scenarioActor.getSnapshot().value;
 
   // Obsługa stanów wymagających bezpośredniego tekstu (lokalizacja/lek)
-  if (currentState === 'ask_location') {
+  if (currentState === 'start') {
     scenarioActor.send({ type: 'USER_PROVIDED_LOCATION', text: text });
     return;
   } else if (currentState === 'ask_which_medicine') {

@@ -9,13 +9,13 @@ import { createMachine, assign } from 'xstate';
 // Słownik Dialogów [Cukrzyca]
 export const diabetesDialog = {
   start: {
-    message: 'Ratownictwo Medyczne, dyspozytor 007, słucham?',
-    hint: 'Zgłoś zaburzenia zachowania lub nagłe osłabienie powiązane z cukrzycą (np. "Poszkodowany jest diabetykiem i bardzo dziwnie się zachowuje").'
+    message: 'Ratownictwo Medyczne, dyspozytor 81, słucham',
+    hint: 'Przedstaw swoją lokalizację, podaj adres lub opisz swoje otoczenie, czy znajduje się w pobliżu jakiś znany punkt odniesienia?'
   },
 
-  ask_location: {
-    message: 'Proszę podać dokładny adres.',
-    hint: 'Podaj dokładny adres zdarzenia.'
+  ask_situation: {
+    message: 'Dobrze, co się stało?.',
+    hint: 'Powiedz co się dzieje, zgłoś hipoglikemię lub hiperglikemię (np. "Osoba jest nieprzytomna, podejrzewam hipoglikemię" lub "Osoba jest przytomna, ale ma bardzo wysoki poziom cukru we krwi").'
   },
 
   ask_consciousness: {
@@ -76,18 +76,22 @@ export const diabetesMachine = createMachine({
 
   states: {
     start: {
-      on: { 'intent.diabetes.report': 'ask_location' }
-    },
-
-    ask_location: {
       on: {
         'USER_PROVIDED_LOCATION': {
-          target: 'ask_consciousness',
+          target: 'ask_situation',
           actions: assign({
             location: ({ event }) => event.text 
           })
         }
       }
+    },
+
+    ask_situation: {
+      on: { 
+        'intent.diabetes.report': 'ask_consciousness',
+        '*': 'ask_consciousness'
+      },
+      
     },
 
     ask_consciousness: {

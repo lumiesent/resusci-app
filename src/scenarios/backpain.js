@@ -9,13 +9,13 @@ import { createMachine, assign } from 'xstate';
 // Słownik Dialogów [Ból Kręgosłupa, Pleców]
 export const backpainDialog = {
   start: {
-    message: 'Ratownictwo Medyczne, dyspozytor 69, słucham?',
-    hint: 'Zgłoś silny ból pleców/kręgosłupa poszkodowanego (np. "Poszkodowany ma potworny ból kręgosłupa").'
+    message: 'Ratownictwo Medyczne, dyspozytor 81, słucham',
+    hint: 'Przedstaw swoją lokalizację, podaj adres lub opisz swoje otoczenie, czy znajduje się w pobliżu jakiś znany punkt odniesienia?'
   },
 
-  ask_location: {
-    message: 'Proszę podać dokładny adres zdarzenia.',
-    hint: 'Podaj adres.'
+  ask_situation: {
+    message: 'Dobrze, co się stało?.',
+    hint: 'Powiedz co się dzieje, zgłoś ból kręgosłupa (np. "Osoba skarży się na silny ból pleców").'
   },
 
   ask_consciousness: {
@@ -101,18 +101,21 @@ export const backpainMachine = createMachine({
 
   states: {
     start: {
-      on: { 'intent.backpain.report': 'ask_location' }
-    },
-
-    ask_location: {
       on: {
         'USER_PROVIDED_LOCATION': {
-          target: 'ask_consciousness',
+          target: 'ask_situation',
           actions: assign({
             location: ({ event }) => event.text 
           })
         }
       }
+    },
+
+    ask_situation: {
+      on: { 
+        'intent.backpain.report': 'ask_consciousness',
+        '*': 'ask_consciousness' 
+      },
     },
 
     ask_consciousness: {
