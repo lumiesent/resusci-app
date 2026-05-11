@@ -44,10 +44,6 @@ Wszystkie dane zawarte w folderze `src/scenarios/` (w tym plik `allergy.js`), ba
 ## ⚠️ Zastrzeżenie (Disclaimer) 
 Aplikacja ma charakter **wyłącznie edukacyjny i symulacyjny**. W przypadku rzeczywistego zagrożenia życia należy niezwłocznie wybrać numer alarmowy **112** lub **999**.
 --- 
-Autorzy:
-* Patryk Czyżewski • Lumiesent (<https://www.lumiesent.pl>)
-* Maciej Szolc • Wyjdź w teren (<https://www.wyjdzwteren.com>)
-
 ## 👥 Autorzy i Zespół
 
 | Autor | Rola | Strona | Kontakt |
