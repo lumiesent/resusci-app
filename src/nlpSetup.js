@@ -487,6 +487,36 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'osoba poszkodowana wymiotowała przed chwilą', 'intent.unconscious.vomiting');
   nlp.addDocument('pl', 'nie widać żadnych wymiocin', 'intent.unconscious.vomiting');
 
+  /** Scenariusz: Oparzenie
+   * ==============================
+   * --- INTENCJE DOT. OPARZEŃ ---
+   * ==============================
+   **/ 
+
+  // Zgłoszenie oparzenia
+  nlp.addDocument('pl', 'osoba poszkodowana oparzyła się wrzątkiem', 'intent.burns.report');
+  nlp.addDocument('pl', 'wybuchł biokominek i moja dziewczyna jest poparzona', 'intent.burns.report');
+  nlp.addDocument('pl', 'dziecko wylało na siebie gorącą kawę', 'intent.burns.report');
+  nlp.addDocument('pl', 'mąż ma zwęglone ubranie na plecach po wybuchu', 'intent.burns.report');
+
+  // Przyczyna oparzenia
+  nlp.addDocument('pl', 'to było porażenie prądem w garażu', 'intent.burns.cause');
+  nlp.addDocument('pl', 'oblała się kwasem w warsztacie', 'intent.burns.cause');
+  nlp.addDocument('pl', 'wpadł nogą do dołu z wapnem', 'intent.burns.cause');
+  nlp.addDocument('pl', 'oparzyła się ogniem z grilla', 'intent.burns.cause');
+
+  // Objawy inhalacyjne (drogi oddechowe)
+  nlp.addDocument('pl', 'ma osmalone brwi i drapie ją w gardle', 'intent.burns.inhalation_symptoms');
+  nlp.addDocument('pl', 'ma sadzę w nosie i ciężko mu mówić', 'intent.burns.inhalation_symptoms');
+  nlp.addDocument('pl', 'skarży się na duszność i pieczenie w przełyku', 'intent.burns.inhalation_symptoms');
+  nlp.addDocument('pl', 'nie ma osmalonych brwi, oddycha normalnie', 'intent.burns.inhalation_symptoms');
+
+  // Szczegóły (lokalizacja i wygląd)
+  nlp.addDocument('pl', 'oparzenie jest na twarzy i dłoniach', 'intent.burns.details');
+  nlp.addDocument('pl', 'na skórze wyszły ogromne bąble i pęcherze', 'intent.burns.details');
+  nlp.addDocument('pl', 'skóra jest biała i twarda', 'intent.burns.details');
+  nlp.addDocument('pl', 'ma poparzone krocze i brzuch', 'intent.burns.details');
+
   await nlp.train();
   return nlp;
 }
