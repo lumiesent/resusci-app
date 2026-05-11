@@ -681,6 +681,40 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'ma puls ponad sto czterdzieści uderzeń na minutę', 'intent.cardio.vitals');
   nlp.addDocument('pl', 'nie mamy jak zmierzyć ciśnienia', 'intent.cardio.vitals');
 
+  /** Scenariusz: Urazy, obrażenia
+   * ========================
+   * --- INTENCJE URAZOWE ---
+   * ========================
+   **/ 
+
+  // Zgłoszenie
+  nlp.addDocument('pl', 'doszło do wypadku mężczyzna spadł z drugiego piętra', 'intent.trauma.report'); // 
+  nlp.addDocument('pl', 'samochód potrącił rowerzystę na skrzyżowaniu', 'intent.trauma.report'); // [cite: 39]
+  nlp.addDocument('pl', 'kolega nadział się udem na metalowy pręt', 'intent.trauma.report'); // 
+  nlp.addDocument('pl', 'pracownik w warsztacie odciął sobie palce piłą', 'intent.trauma.report'); // [cite: 40]
+
+  // Bezpieczeństwo
+  nlp.addDocument('pl', 'miejsce jest bezpieczne, maszyny wyłączone', 'intent.trauma.safety_confirmed');
+  nlp.addDocument('pl', 'zabezpieczyliśmy auto trójkątem, nic się nie pali', 'intent.trauma.safety_confirmed');
+
+  // Szczegóły urazu
+  nlp.addDocument('pl', 'ma głęboką ranę ciętą na przedramieniu', 'intent.trauma.injury_info'); // 
+  nlp.addDocument('pl', 'pręt tkwi głęboko w nogdze i wystaje', 'intent.trauma.injury_info'); // 
+  nlp.addDocument('pl', 'ma uraz kręgosłupa i nie może się ruszać', 'intent.trauma.injury_info'); // [cite: 36]
+
+  // Amputacja
+  nlp.addDocument('pl', 'odcięło mu dwa palce u dłoni', 'intent.trauma.amputation'); // [cite: 40, 47]
+  nlp.addDocument('pl', 'maszyna urwała mu rękę w nadgarstku', 'intent.trauma.amputation');
+
+  // Krwawienie
+  nlp.addDocument('pl', 'krew tryska pod bardzo dużym ciśnieniem', 'intent.trauma.bleeding'); // [cite: 39, 48]
+  nlp.addDocument('pl', 'całe spodnie są już czerwone od krwi', 'intent.trauma.bleeding');
+  nlp.addDocument('pl', 'nie widać żadnego dużego krwawienia', 'intent.trauma.no_bleeding');
+
+  // Neurologia
+  nlp.addDocument('pl', 'nie czuje nóg i mówi że mu drętwieją ręce', 'intent.trauma.neuro');
+  nlp.addDocument('pl', 'może normalnie ruszać wszystkimi kończynami', 'intent.trauma.neuro');
+
   await nlp.train();
   return nlp;
 }

@@ -17,6 +17,7 @@ import { paralysisMachine, paralysisDialog } from './scenarios/paralysis.js';
 import { electrocutionMachine, electrocutionDialog } from './scenarios/electrocution.js';
 import { hangingMachine, hangingDialog } from './scenarios/hanging.js';
 import { cardiologyMachine, cardiologyDialog } from './scenarios/cardiology.js';
+import { traumaMachine, traumaDialog } from './scenarios/trauma.js';
 
 import { setupNLP } from './nlpSetup.js';
 import { icons } from './icons.js'; // Zaimportuj ikony
@@ -142,6 +143,13 @@ const scenarioRegistry = {
     icon: icons.placeholder, // Ścieżka do SVG
     title: 'Problemy kardiologiczne', 
     desc: 'Problemy kardiologiczne, takie jak zawał serca czy arytmia, mogą prowadzić do nagłego zatrzymania krążenia i stanowią bezpośrednie zagrożenie życia. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.'
+  },
+  'trauma': {
+    machine: traumaMachine,
+    dialog: traumaDialog,
+    icon: icons.placeholder, // Ścieżka do SVG
+    title: 'Urazy, obrażenia', 
+    desc: 'Urazy, czyli poważne obrażenia ciała spowodowane urazem, mogą prowadzić do krwotoków, uszkodzeń narządów wewnętrznych i stanowi bezpośrednie zagrożenie życia. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.'
   }
 };
 
