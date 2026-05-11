@@ -7,6 +7,7 @@ import { backpainMachine, backpainDialog } from './scenarios/backpain.js';
 import { pregnancyMachine, pregnancyDialog } from './scenarios/pregnancy.js';
 import { diabetesMachine, diabetesDialog } from './scenarios/diabetes.js';
 import { seizuresMachine, seizuresDialog } from './scenarios/seizures.js';
+import { dyspneaMachine, dyspneaDialog } from './scenarios/dyspnea.js';
 
 import { setupNLP } from './nlpSetup.js';
 import { icons } from './icons.js'; // Zaimportuj ikony
@@ -62,6 +63,13 @@ const scenarioRegistry = {
     icon: icons.placeholder, // Ścieżka do SVG
     title: 'Drgawki', 
     desc: 'Ataki drgawkowe mogą być objawem poważnych schorzeń neurologicznych. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.' 
+  },
+  'dyspnea': { 
+    machine: dyspneaMachine, 
+    dialog: dyspneaDialog, 
+    icon: icons.placeholder, // Ścieżka do SVG
+    title: 'Duszność', 
+    desc: 'Duszność może być objawem wielu schorzeń, w tym chorób serca i płuc. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.' 
   }
 };
 

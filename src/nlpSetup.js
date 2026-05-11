@@ -374,6 +374,37 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'Popuścił mocz i ugryzł się w język', 'intent.seizures.symptoms');
   nlp.addDocument('pl', 'Widzę krew w ustach', 'intent.seizures.symptoms');
 
+  /** Scenariusz: Duszność
+   * ==============================
+   * --- INTENCJE DOT. DUSZNOŚCI ---
+   * ==============================
+   **/ 
+
+  // Zgłoszenie duszności
+  nlp.addDocument('pl', 'osoba poszkodowana nagle zaczęła się dusić', 'intent.dyspnea.report');
+  nlp.addDocument('pl', 'nie może złapać tchu i charczy', 'intent.dyspnea.report');
+  nlp.addDocument('pl', 'ledwo oddycha i siedzi nieruchomo', 'intent.dyspnea.report');
+  nlp.addDocument('pl', 'brakuje jej powietrza', 'intent.dyspnea.report');
+
+  // Uraz lub zadławienie
+  nlp.addDocument('pl', 'zadławił się orzechem', 'intent.dyspnea.trauma_choking');
+  nlp.addDocument('pl', 'ma wbity kawałek metalu w klatkę piersiową', 'intent.dyspnea.trauma_choking');
+  nlp.addDocument('pl', 'uderzył się mocno w pierś podczas upadku', 'intent.dyspnea.trauma_choking');
+
+  // Wygląd skóry i czas
+  nlp.addDocument('pl', 'jest bardzo blady i cały zlany zimnym potem', 'intent.dyspnea.skin_symptoms');
+  nlp.addDocument('pl', 'usta zrobiły się sine', 'intent.dyspnea.skin_symptoms');
+  nlp.addDocument('pl', 'zaczęło się to dziesięć minut temu', 'intent.dyspnea.skin_symptoms');
+
+  // Historia i leki
+  nlp.addDocument('pl', 'choruje na astmę i brał leki wziewne', 'intent.dyspnea.history_meds');
+  nlp.addDocument('pl', 'jest po zawale i ma pochp', 'intent.dyspnea.history_meds');
+  nlp.addDocument('pl', 'bierze na stałe leki na serce', 'intent.dyspnea.history_meds');
+
+  // Dodatkowe objawy
+  nlp.addDocument('pl', 'skarży się na silny ból w klatce piersiowej', 'intent.dyspnea.details');
+  nlp.addDocument('pl', 'od tygodnia ma spuchniętą nogę', 'intent.dyspnea.details');
+  nlp.addDocument('pl', 'kaszle krwią', 'intent.dyspnea.details');
 
   await nlp.train();
   return nlp;
