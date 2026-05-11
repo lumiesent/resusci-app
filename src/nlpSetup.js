@@ -621,6 +621,29 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'widać spaloną skórę w miejscu gdzie dotknął kabla', 'intent.electrocution.burns');
   nlp.addDocument('pl', 'nie widzę żadnych oparzeń na ciele', 'intent.electrocution.burns');
 
+  /** Scenariusz: Powieszenie, zadzierzgnięcie
+   * =================================
+   * --- INTENCJE DOT. POWIESZENIA ---
+   * =================================
+   **/ 
+
+  // Zgłoszenie zdarzenia
+  nlp.addDocument('pl', 'znalazłem sąsiada który wisi na sznurze', 'intent.hanging.report');
+  nlp.addDocument('pl', 'syn powiesił się na pasku u klamki', 'intent.hanging.report');
+  nlp.addDocument('pl', 'ktoś wisi na gałęzi w lesie', 'intent.hanging.report');
+  nlp.addDocument('pl', 'doszło do wypadku i pracownik zahaczył kablem o szyję', 'intent.hanging.report');
+
+  // Potwierdzenie odcięcia pętli
+  nlp.addDocument('pl', 'tak odcięliśmy ją już i leży na ziemi', 'intent.hanging.cut_confirmed');
+  nlp.addDocument('pl', 'pętla jest już zdjęta z szyi', 'intent.hanging.cut_confirmed');
+  nlp.addDocument('pl', 'właśnie go zdejmujemy ze sznura', 'intent.hanging.cut_confirmed');
+
+  // Czas zdarzenia
+  nlp.addDocument('pl', 'nie wiem jak długo tam jest ale ciało jest sine', 'intent.hanging.time');
+  nlp.addDocument('pl', 'widziałam go żywego pół godziny temu', 'intent.hanging.time');
+  nlp.addDocument('pl', 'to się stało przed chwilą widzę że jeszcze się rusza', 'intent.hanging.time');
+  nlp.addDocument('pl', 'znalazłem go dopiero teraz nie mam pojęcia o czasie', 'intent.hanging.time');
+
   await nlp.train();
   return nlp;
 }

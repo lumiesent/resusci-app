@@ -15,6 +15,7 @@ import { burnsMachine, burnsDialog } from './scenarios/burns.js';
 import { hypothermiaMachine, hypothermiaDialog } from './scenarios/hypothermia.js';
 import { paralysisMachine, paralysisDialog } from './scenarios/paralysis.js';
 import { electrocutionMachine, electrocutionDialog } from './scenarios/electrocution.js';
+import { hangingMachine, hangingDialog } from './scenarios/hanging.js';
 
 import { setupNLP } from './nlpSetup.js';
 import { icons } from './icons.js'; // Zaimportuj ikony
@@ -126,6 +127,13 @@ const scenarioRegistry = {
     icon: icons.placeholder, // Ścieżka do SVG
     title: 'Porażenie prądem', 
     desc: 'Porażenie prądem, zwłaszcza wysokim napięciem, może prowadzić do poważnych obrażeń i stanowi bezpośrednie zagrożenie życia. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe, jednak najważniejsze jest twoje bezpieczeństwo.'
+  },
+  'hanging': {
+    machine: hangingMachine,
+    dialog: hangingDialog,
+    icon: icons.placeholder, // Ścieżka do SVG
+    title: 'Zawieszenie', 
+    desc: 'Zawieszenie, czyli sytuacja, w której osoba jest zawieszona na czymś, co uciska szyję, może prowadzić do uduszenia i stanowi bezpośrednie zagrożenie życia. Jest to sytuacja o najwyższym stopniu krytyczności.'
   }
 };
 
