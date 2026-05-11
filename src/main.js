@@ -1,14 +1,14 @@
 import { createActor } from 'xstate';
-import { 
-  allergyMachine, allergyDialog,
-  stomachMachine, stomachDialog,
-  headacheMachine, headacheDialog,
-  backpainMachine, backpainDialog,
-  pregnancyMachine, pregnancyDialog,
-  diabetesMachine, diabetesDialog
-} from './scenario.js';
+
+import { allergyMachine, allergyDialog } from './scenarios/allergy.js';
+import { stomachMachine, stomachDialog } from './scenarios/stomach.js';
+import { headacheMachine, headacheDialog } from './scenarios/headache.js';
+import { backpainMachine, backpainDialog } from './scenarios/backpain.js';
+import { pregnancyMachine, pregnancyDialog } from './scenarios/pregnancy.js';
+import { diabetesMachine, diabetesDialog } from './scenarios/diabetes.js';
+
 import { setupNLP } from './nlpSetup.js';
-import { icons } from './icons.js'; // Zaimportuj swoje ikony
+import { icons } from './icons.js'; // Zaimportuj ikony
 import logoUrl from './img/logo.png';
 
 // --- BAZA WIEDZY O SCENARIUSZACH ---
@@ -291,7 +291,17 @@ async function initApp() {
     micBtn.classList.add('mic-hidden');
   }
 
+  // Ustaw ikony scenariuszy z obiektu icons
   const cards = document.querySelectorAll('.scenario-card');
+  cards.forEach(card => {
+    const scenarioId = card.dataset.scenario;
+    const iconImg = card.querySelector('.icon');
+    if (iconImg && scenarioRegistry[scenarioId]) {
+      iconImg.src = scenarioRegistry[scenarioId].icon;
+    }
+  });
+
+  // Dodaj event listenery do kart
   cards.forEach(card => {
     card.addEventListener('click', (e) => {
       currentScenarioId = e.currentTarget.dataset.scenario;
