@@ -10,6 +10,7 @@ import { seizuresMachine, seizuresDialog } from './scenarios/seizures.js';
 import { dyspneaMachine, dyspneaDialog } from './scenarios/dyspnea.js';
 import { hemorrhageMachine, hemorrhageDialog } from './scenarios/hemorrhage.js';
 import { lyingMachine, lyingDialog } from './scenarios/lying.js';
+import { unconsciousMachine, unconsciousDialog } from './scenarios/unconscious.js';
 
 import { setupNLP } from './nlpSetup.js';
 import { icons } from './icons.js'; // Zaimportuj ikony
@@ -86,6 +87,13 @@ const scenarioRegistry = {
     icon: icons.placeholder, // Ścieżka do SVG
     title: 'Osoba Leżąca', 
     desc: 'Osoba leżąca, zwłaszcza nieprzytomna, wymaga szybkiej oceny stanu zdrowia i podjęcia odpowiednich działań ratunkowych.' 
+  },
+  'unconscious': { 
+    machine: unconsciousMachine, 
+    dialog: unconsciousDialog, 
+    icon: icons.placeholder, // Ścieżka do SVG
+    title: 'Nieprzytomny', 
+    desc: 'Nieprzytomny pacjent wymaga natychmiastowej oceny stanu zdrowia i podjęcia odpowiednich działań ratunkowych.' 
   }
 };
 

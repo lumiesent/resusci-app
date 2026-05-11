@@ -454,6 +454,39 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'choruje na serce', 'intent.lying.history');
   nlp.addDocument('pl', 'jest bardzo blady i ma sine usta', 'intent.lying.history');
 
+  /** Scenariusz: Nieprzytomny
+   * ==============================
+   * --- INTENCJE DOT. NIEPRZYTOMNOŚCI ---
+   * ==============================
+   **/ 
+
+  // Zgłoszenie nieprzytomności
+  nlp.addDocument('pl', 'osoba poszkodowana leży i nie można z nią nawiązać kontaktu', 'intent.unconscious.report');
+  nlp.addDocument('pl', 'osunął się na ziemię i w ogóle mnie nie słyszy', 'intent.unconscious.report');
+  nlp.addDocument('pl', 'jest zupełnie wiotka i nie reaguje na szczypanie', 'intent.unconscious.report');
+  nlp.addDocument('pl', 'nie można go obudzić', 'intent.unconscious.report');
+
+  // Bezpieczeństwo i tlenek węgla (CO)
+  nlp.addDocument('pl', 'jest bezpiecznie, nie czuję zapachów', 'intent.unconscious.safety_ok');
+  nlp.addDocument('pl', 'czuć gaz w łazience', 'intent.unconscious.co_risk');
+  nlp.addDocument('pl', 'piecyk gazowy był włączony', 'intent.unconscious.co_risk');
+  nlp.addDocument('pl', 'w kuchni jest bardzo duszno i czuć spaleniznę', 'intent.unconscious.co_risk');
+
+  // Skóra i poty (Hipoglikemia)
+  nlp.addDocument('pl', 'jest bardzo blada i cała spocona', 'intent.unconscious.skin_symptoms');
+  nlp.addDocument('pl', 'skóra jest zimna i wilgotna', 'intent.unconscious.skin_symptoms');
+  nlp.addDocument('pl', 'ma sine usta', 'intent.unconscious.skin_symptoms');
+
+  // Historia i cukrzyca
+  nlp.addDocument('pl', 'choruje na cukrzycę i nadciśnienie', 'intent.unconscious.history');
+  nlp.addDocument('pl', 'brała rano insulinę i leki na serce', 'intent.unconscious.history');
+  nlp.addDocument('pl', 'często miewa ataki padaczki', 'intent.unconscious.history');
+
+  // Wymioty
+  nlp.addDocument('pl', 'widać treść pokarmową w ustach', 'intent.unconscious.vomiting');
+  nlp.addDocument('pl', 'osoba poszkodowana wymiotowała przed chwilą', 'intent.unconscious.vomiting');
+  nlp.addDocument('pl', 'nie widać żadnych wymiocin', 'intent.unconscious.vomiting');
+
   await nlp.train();
   return nlp;
 }
