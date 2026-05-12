@@ -1,0 +1,53 @@
+License / Licencja
+
+[EN] This project is distributed under a hybrid license model to balance open-source collaboration with the protection of specialized medical content.
+
+[PL] Niniejszy projekt jest rozpowszechniany w oparciu o hybrydowy model licencyjny, aby pogodzić współpracę open-source z ochroną specjalistycznych treści medycznych.
+
+1. Software & Engine (Kod Źródłowy)
+
+[EN] The source code, including the engine logic and state machine structures (e.g., main.js), is licensed under the MIT License.
+
+    MIT License Summary & Warranty Disclaimer:
+
+        Permissions: You are free to use, copy, modify, and distribute the software for any purpose.
+
+        Condition: The original copyright notice and this permission notice must be included in all copies or substantial portions of the software.
+
+        No Warranty: The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability or fitness for a particular purpose.
+
+        Limitation of Liability: In no event shall the authors or copyright holders be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the software or the use of it.
+
+[PL] Podsumowanie Licencji i Wyłączenie Odpowiedzialności
+
+W ramach części otwartej Twojego projektu (silnik i kod sterujący):
+
+    Uprawnienia: Masz prawo do dowolnego wykorzystania, kopiowania i modyfikowania kodu.
+
+    Warunek: Musisz dołączyć treść informacji o prawach autorskich do każdej kopii oprogramowania.
+
+    Brak Gwarancji: Oprogramowanie jest dostarczane w stanie "takim, jakim jest" (as is), bez jakichkolwiek gwarancji, wyraźnych lub dorozumianych.
+
+    Wyłączenie Odpowiedzialności: Autorzy w żadnym wypadku nie ponoszą odpowiedzialności za jakiekolwiek roszczenia, szkody lub inne konsekwencje wynikające z użytkowania oprogramowania.
+
+2. Medical Scenarios & Content (Treści i Scenariusze)
+
+[EN] All Rights Reserved. The medical scenarios, dialogue databases (e.g., allergyDialog), and knowledge registries (e.g., scenarioRegistry) are proprietary content.
+
+[PL] Wszelkie Prawa Zastrzeżone. Scenariusze medyczne, bazy dialogów (np. allergyDialog) oraz rejestry wiedzy (np. scenarioRegistry) stanowią treści zastrzeżone.
+
+    [EN] Restrictons: You may not copy, redistribute, or use the medical dialogue content for commercial purposes without explicit permission from the authors.
+
+    [PL] Ograniczenia: Zabrania się kopiowania, redystrybucji oraz wykorzystywania treści dialogów medycznych do celów komercyjnych bez wyraźnej zgody autorów.
+
+3. Authorship & Documentation (Autorstwo i Dokumentacja)
+
+[EN] All research, information gathering, and medical documentation were prepared by the Medical Content Curator (Dokumentalista merytoryczny).
+
+[PL] Całość researchu, gromadzenia informacji oraz dokumentacja medyczna zostały przygotowane przez Kuratora Treści Medycznych (Dokumentalistę merytorycznego).
+
+4. Disclaimer (Zastrzeżenie)
+
+[EN] This software is for educational purposes only. In case of a real emergency, call 112 or 999 immediately.
+
+[PL] Oprogramowanie ma charakter wyłącznie edukacyjny. W przypadku rzeczywistego zagrożenia, natychmiast zadzwoń pod numer 112 lub 999.
