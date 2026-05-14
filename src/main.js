@@ -18,6 +18,7 @@ import { electrocutionMachine, electrocutionDialog } from './scenarios/electrocu
 import { hangingMachine, hangingDialog } from './scenarios/hanging.js';
 import { cardiologyMachine, cardiologyDialog } from './scenarios/cardiology.js';
 import { traumaMachine, traumaDialog } from './scenarios/trauma.js';
+import { cprMachine, cprDialog } from './scenarios/cpr.js';
 
 import { setupNLP } from './nlpSetup.js';
 import { icons } from './icons.js'; // Zaimportuj ikony
@@ -150,6 +151,13 @@ const scenarioRegistry = {
     icon: icons.placeholder, // Ścieżka do SVG
     title: 'Urazy, obrażenia', 
     desc: 'Urazy, czyli poważne obrażenia ciała spowodowane urazem, mogą prowadzić do krwotoków, uszkodzeń narządów wewnętrznych i stanowi bezpośrednie zagrożenie życia. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.'
+  },
+  'cpr': {
+    machine: cprMachine,
+    dialog: cprDialog,
+    icon: icons.placeholder, // Ścieżka do SVG
+    title: 'NZK - Resuscytacja', 
+    desc: 'Nagłe zatrzymanie krążenia (NZK) to stan, w którym serce przestaje efektywnie pompować krew. Szybka identyfikacja i podjęcie działań ratunkowych, takich jak resuscytacja krążeniowo-oddechowa (RKO) i użycie defibrylatora AED, są kluczowe dla zwiększenia szans na przeżycie.'
   }
 };
 
@@ -272,6 +280,7 @@ function updateUIFromState(state) {
 }
 
 // --- WEJŚCIE UŻYTKOWNIKA (NLP) ---
+/*
 async function handleUserInput() {
   const text = userInput.value.trim();
   if (!text) return;
@@ -301,6 +310,96 @@ async function handleUserInput() {
   
   scenarioActor.send({ type: response.intent, text: text });
 }
+  */
+
+
+
+
+
+
+
+async function handleUserInput() {
+  const text = userInput.value.trim();
+  if (!text) return;
+
+  addMessage(text, 'user');
+  userInput.value = '';
+
+  const snapshot = scenarioActor.getSnapshot();
+  const currentState = snapshot.value;
+
+  console.group(`%c[DEBUG NLP/XSTATE] === Nowa wiadomość ===`, 'background: #222; color: #bada55; padding: 4px;');
+  console.log(`[KROK 1] Tekst: "${text}"`);
+  console.log(`[KROK 2] Stan maszyny:`, currentState);
+
+  // Obsługa stanów tekstowych
+  if (currentState === 'start') {
+    console.groupEnd();
+    scenarioActor.send({ type: 'USER_PROVIDED_LOCATION', text: text });
+    return;
+  } else if (currentState === 'ask_which_medicine') {
+    console.groupEnd();
+    scenarioActor.send({ type: 'USER_PROVIDED_MEDICINE', text: text });
+    return;
+  }
+
+  console.log(`[KROK 3] Wywołuję NLP.js...`);
+  const response = await nlpEngine.process('pl', text);
+  
+  // --- WYBIÓRCZE SPRAWDZANIE INTENCJI (POPRAWIONE) ---
+  let chosenIntent = 'None';
+
+  if (response.classifications && response.classifications.length > 0) {
+    // Sortujemy po 'score' (NLP.js v4) lub 'value' (v5/alpha)
+    const sortedClassifications = [...response.classifications].sort((a, b) => {
+      const scoreB = b.score !== undefined ? b.score : (b.value || 0);
+      const scoreA = a.score !== undefined ? a.score : (a.value || 0);
+      return scoreB - scoreA;
+    });
+
+    console.log(`[KROK 4] Analiza klasyfikacji (XState v5 Context Check):`);
+    
+    for (const c of sortedClassifications) {
+      // Pobieramy wynik punktowy z bezpiecznym fallbackiem
+      const currentScore = c.score !== undefined ? c.score : (c.value || 0);
+      const intentName = c.intent || c.label; // NLP.js v4 używa 'intent'
+
+      // Sprawdzamy czy XState akceptuje ten event w obecnym stanie
+      const canHandle = snapshot.can({ type: intentName, text: text });
+      const passesThreshold = currentScore > 0.01; // Możesz dostosować ten próg
+      
+      console.log(`  🔍 Intencja: "%c${intentName}%c" | Score: ${currentScore.toFixed(4)} | snapshot.can(): %c${canHandle}%c`, 
+        'color: #007bff; font-weight: bold;', 'color: inherit;',
+        canHandle ? 'color: green; font-weight: bold;' : 'color: red;', 'color: inherit;'
+      );
+
+      if (canHandle && passesThreshold && chosenIntent === 'None') {
+        chosenIntent = intentName;
+        console.log(`  %c=> WYBRANO: "${chosenIntent}"`, 'color: #28a745; font-weight: bold;');
+      }
+    }
+  }
+  
+  console.log(`[KROK 5] Decyzja końcowa: "${chosenIntent}"`);
+  console.groupEnd();
+
+  // Fallback
+  if (chosenIntent === 'None' && (currentState === "ask_consciousness" || currentState === "ask_breathing" || currentState === "ask_situation")) {
+    const fallbackMsg = 'Nie zrozumiałem dokładnie. Spróbuj ująć to inaczej.';
+    addMessage(fallbackMsg, 'bot');
+    speak(fallbackMsg);
+    return;
+  }
+  
+  scenarioActor.send({ type: chosenIntent, text: text });
+}
+
+
+
+
+
+
+
 
 function addMessage(text, sender) {
   const msgDiv = document.createElement('div');

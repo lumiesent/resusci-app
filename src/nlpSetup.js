@@ -715,6 +715,564 @@ export async function setupNLP() {
   nlp.addDocument('pl', 'nie czuje nóg i mówi że mu drętwieją ręce', 'intent.trauma.neuro');
   nlp.addDocument('pl', 'może normalnie ruszać wszystkimi kończynami', 'intent.trauma.neuro');
 
+  /** Scenariusz: Nagłe Zatrzymanie Krążenia (NZK)
+   * =======================================
+   * --- INTENCJE DOT. NZK (ZATRZYMANIA) ---
+   * =======================================
+   **/ 
+
+  // --- ZGŁOSZENIA POCZĄTKOWE (Rozgałęzienie intencji) ---
+
+  // 1. Niepewna Intencja (Ktoś leży) - intent.cpr.lying
+  nlp.addDocument('pl', 'Widzę kogoś na chodniku, chyba zemdlał', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Jakiś gość leży pod ławką w parku', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Na klatce schodowej leży nieznajoma osoba', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Potrzebna pomoc, ktoś upadł na przejściu dla pieszych', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Zauważyłem kobietę leżącą na ziemi w sklepie', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Ktoś tu leży i się nie rusza', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Ktoś leży na ulicy i nie reaguje na nic!', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'W łazience znaleźliśmy leżącego kolegę', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Na peronie leży starszy pan', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Człowiek padł na ziemię i tak został', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Widzę nieprzytomną sylwetkę na trawniku', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Ktoś osunął się na ścianę i teraz leży', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Sąsiad leży na wycieraczce pod drzwiami', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'W biurze zemdlała koleżanka, leży na podłodze', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Nieznajomy leży twarzą do ziemi przy drodze', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Znalazłem kogoś nieprzytomnego w piwnicy', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Chyba ktoś zasłabł, leży nieruchomo', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Na parkingu leży jakiś mężczyzna', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Kobieta leży na środku chodnika', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Widzę ciało leżące na ziemi w lesie', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Zauważyłem leżącą osobę, muszę sprawdzić co się stało', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Ktoś leży na ziemi', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Mężczyzna osunął się na ziemię', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Widzę osobę leżącą na przystanku', 'intent.cpr.lying');
+  nlp.addDocument('pl', 'Pracownik leży bez ruchu w garażu', 'intent.cpr.lying');
+
+  // 2. Niepełna Intencja (Nieprzytomny) - intent.cpr.unconscious
+  nlp.addDocument('pl', 'Potrząsam nim, ale nie reaguje', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'On jest nieprzytomny, nic do niego nie dociera', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Wołam go, ale zero reakcji', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Chyba stracił przytomność, jest bez kontaktu', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Leży i nie reaguje na szczypanie ani wołanie', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Zemdlał i nie mogę go dobudzić', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Ona nie kontaktuje, oczy ma zamknięte', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Jest kompletnie nieświadomy tego co się dzieje', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Nie odpowiada na żadne pytania', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Próbuję go ocucić, ale bez skutku', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Mój mąż się nie budzi, jest całkiem wiotki', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Osunęła się i straciła przytomność', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Nie otwiera oczu, kiedy go dotykam', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Jest jak kłoda, zero reakcji na bodźce', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Znalazłem go, jest nieprzytomny i blady', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Nie rusza się i nie mówi, chyba zemdlał', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Ona straciła świadomość, nie wiem co robić', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Głośno krzyczę, ale on nie reaguje', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Jest bez kontaktu, nie czuje bólu', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Przelewa mi się przez ręce, jest nieprzytomny', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Znalazłem nieprzytomnego mężczyznę', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Osoba nie reaguje na głos ani dotyk', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'Zemdlał i nie można go obudzić', 'intent.cpr.unconscious');
+  nlp.addDocument('pl', 'On nie reaguje, jest zupełnie wiotki', 'intent.cpr.unconscious');
+
+  // 3. Pełna Intencja (Brak oddechu - Krytyczne) - intent.cpr.not_breathing
+  nlp.addDocument('pl', 'Ratunku, on przestał oddychać!', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'On nie dycha, zsiniał na twarzy', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Klatka się nie rusza, nie czuję powietrza', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Brak tętna i nie oddycha, szybko!', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Twarz robi się fioletowa, brak oddechu', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'On charczy i przestaje oddychać', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Usta mu sinieją, klatka piersiowa stoi', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Przykładałem ucho, nic nie słychać, nie oddycha', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'To zatrzymanie krążenia, on nie oddycha', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Zupełny brak oddechu, jest zimny', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Chyba umiera, przestał łapać powietrze', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Nie ma oddechu, natychmiastowa pomoc potrzebna', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Tylko łapie powietrze jak ryba, to nie jest oddech', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Zero ruchów klatki piersiowej, brak tchu', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Ona nie oddycha, jest sina na ustach', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Sprawdziłem, nie ma oddechu przez 10 sekund', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'On nie żyje? Nie oddycha wcale!', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Jego płuca nie pracują, brak wydechu', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Nie reaguje i nie pobiera powietrza', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Potrzebujemy defibrylatora, on nie oddycha', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Mój mąż nagle upadł, nie oddycha i sinieje na twarzy', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Klatka piersiowa się nie unosi, on nie oddycha', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Jest siny i nie łapie powietrza', 'intent.cpr.not_breathing');
+  nlp.addDocument('pl', 'Nie czuć oddechu, klatka piersiowa stoi w miejscu', 'intent.cpr.not_breathing');
+
+  // --- BEZPIECZEŃSTWO ---
+
+  // 1. Jest bezpiecznie, nie ma zagrożeń - intent.safe
+  nlp.addDocument('pl', 'Wokół jest czysto i bezpiecznie', 'intent.safe');
+  nlp.addDocument('pl', 'Mogę podejść, nic mi nie grozi', 'intent.safe');
+  nlp.addDocument('pl', 'Teren jest zabezpieczony', 'intent.safe');
+  nlp.addDocument('pl', 'Nie widzę żadnych kabli ani ognia', 'intent.safe');
+  nlp.addDocument('pl', 'Jestem w bezpiecznym miejscu', 'intent.safe');
+  nlp.addDocument('pl', 'Nic nam tu nie zagraża', 'intent.safe');
+  nlp.addDocument('pl', 'Tak, tu jest spokojnie', 'intent.safe');
+  nlp.addDocument('pl', 'Wszystko pod kontrolą, jest bezpiecznie', 'intent.safe');
+  nlp.addDocument('pl', 'Okolica wygląda na bezpieczną', 'intent.safe');
+  nlp.addDocument('pl', 'Nie ma ruchu aut, jest ok', 'intent.safe');
+  nlp.addDocument('pl', 'Mogę bez obaw udzielać pomocy', 'intent.safe');
+  nlp.addDocument('pl', 'Brak widocznych niebezpieczeństw', 'intent.safe');
+  nlp.addDocument('pl', 'Miejsce zdarzenia jest stabilne', 'intent.safe');
+  nlp.addDocument('pl', 'Tak, nikt nas nie zaatakuje', 'intent.safe');
+  nlp.addDocument('pl', 'W porządku, nie ma gazu ani dymu', 'intent.safe');
+  nlp.addDocument('pl', 'Jest bezpiecznie, ludzie pomagają', 'intent.safe');
+  nlp.addDocument('pl', 'Obszar jest wolny od zagrożeń', 'intent.safe');
+  nlp.addDocument('pl', 'Tak, droga jest pusta, bezpiecznie', 'intent.safe');
+  nlp.addDocument('pl', 'Brak ryzyka wybuchu czy pożaru', 'intent.safe');
+  nlp.addDocument('pl', 'Opanowałem sytuację, jest bezpiecznie', 'intent.safe');
+  nlp.addDocument('pl', 'Tak, jest bezpiecznie', 'intent.safe');
+  nlp.addDocument('pl', 'Nie ma żadnego zagrożenia', 'intent.safe');
+
+  // 2. Jest niebezpiecznie - intent.unsafe
+  nlp.addDocument('pl', 'Widzę dym, chyba coś się pali', 'intent.unsafe');
+  nlp.addDocument('pl', 'Uwaga, rozlane paliwo na ziemi', 'intent.unsafe');
+  nlp.addDocument('pl', 'Jest tu agresywny pies, boję się podejść', 'intent.unsafe');
+  nlp.addDocument('pl', 'Wszędzie jest pełno szkła i ostrych krawędzi', 'intent.unsafe');
+  nlp.addDocument('pl', 'On leży w kałuży, a obok są przewody elektryczne', 'intent.unsafe');
+  nlp.addDocument('pl', 'Pachnie benzyną i spalenizną', 'intent.unsafe');
+  nlp.addDocument('pl', 'To środek ruchliwej ulicy, samochody pędzą', 'intent.unsafe');
+  nlp.addDocument('pl', 'Osoba jest agresywna i ma nóż', 'intent.unsafe');
+  nlp.addDocument('pl', 'Ściana budynku grozi zawaleniem', 'intent.unsafe');
+  nlp.addDocument('pl', 'Jest tu bardzo ślisko, wyciek substancji chemicznej', 'intent.unsafe');
+  nlp.addDocument('pl', 'Czuć wyraźnie gaz w całym pomieszczeniu', 'intent.unsafe');
+  nlp.addDocument('pl', 'Wybuchł pożar w rogu pokoju', 'intent.unsafe');
+  nlp.addDocument('pl', 'Tłum ludzi napiera, jest niebezpiecznie', 'intent.unsafe');
+  nlp.addDocument('pl', 'Zauważyłem iskrzące kable nad poszkodowanym', 'intent.unsafe');
+  nlp.addDocument('pl', 'Woda zalewa pomieszczenie, grozi porażeniem', 'intent.unsafe');
+  nlp.addDocument('pl', 'On trzyma coś niebezpiecznego w ręku', 'intent.unsafe');
+  nlp.addDocument('pl', 'Widzę ogień wydostający się spod maski auta', 'intent.unsafe');
+  nlp.addDocument('pl', 'Sufit pęka, musimy uciekać', 'intent.unsafe');
+  nlp.addDocument('pl', 'Jest ciemno i nie widzę co leży na ziemi', 'intent.unsafe');
+  nlp.addDocument('pl', 'Okolica jest niebezpieczna, słychać strzały', 'intent.unsafe');
+  nlp.addDocument('pl', 'Jest tu niebezpiecznie, czuć gaz', 'intent.unsafe');
+  nlp.addDocument('pl', 'W garażu pracował silnik auta, boję się wejść', 'intent.unsafe');
+  nlp.addDocument('pl', 'Został porażony prądem, kable są na ziemi', 'intent.unsafe');
+
+  // --- WYWIAD MEDYCZNY ---
+
+  // 1. Świadomość i kontakt - intent.conscious
+  nlp.addDocument('pl', 'Tak, osoba jest przytomna', 'intent.conscious');
+  nlp.addDocument('pl', 'Otworzył oczy i coś mówi', 'intent.conscious');
+  nlp.addDocument('pl', 'Poszkodowany zaczął do mnie mówić', 'intent.conscious');
+  nlp.addDocument('pl', 'Otworzył oczy i reaguje na ból', 'intent.conscious');
+  nlp.addDocument('pl', 'Tak, on się ocknął', 'intent.conscious');
+  nlp.addDocument('pl', 'Wróciła mu przytomność', 'intent.conscious');
+  nlp.addDocument('pl', 'Wiedział jak się nazywa, kontaktuje', 'intent.conscious');
+  nlp.addDocument('pl', 'Ścisnął moją rękę, gdy go o to poprosiłem', 'intent.conscious');
+  nlp.addDocument('pl', 'Jest przytomny, ale bardzo osłabiony', 'intent.conscious');
+  nlp.addDocument('pl', 'Odzyskał świadomość przed chwilą', 'intent.conscious');
+  nlp.addDocument('pl', 'Patrzy na mnie i kiwa głową', 'intent.conscious');
+  nlp.addDocument('pl', 'Można z nim normalnie porozmawiać', 'intent.conscious');
+  nlp.addDocument('pl', 'Tak, reaguje na dotyk i dźwięk', 'intent.conscious');
+  nlp.addDocument('pl', 'Ocknęła się i pyta co się stało', 'intent.conscious');
+  nlp.addDocument('pl', 'Ona jest świadoma, pamieta wypadek', 'intent.conscious');
+  nlp.addDocument('pl', 'Ma otwarte oczy i wodzi nimi za mną', 'intent.conscious');
+  nlp.addDocument('pl', 'Tak, wybudził się z omdlenia', 'intent.conscious');
+  nlp.addDocument('pl', 'Jęczy i próbuje usiąść, jest przytomny', 'intent.conscious');
+  nlp.addDocument('pl', 'Słyszy mnie i odpowiada półsłówkami', 'intent.conscious');
+  nlp.addDocument('pl', 'Jego stan się poprawił, odzyskał przytomność', 'intent.conscious');
+  nlp.addDocument('pl', 'Tak, nawiązałem z nim kontakt', 'intent.conscious');
+  nlp.addDocument('pl', 'Próbuje coś powiedzieć, jest świadomy', 'intent.conscious');
+
+  // 2. Nieprzytomność i brak kontaktu - intent.unconscious
+  nlp.addDocument('pl', 'Cały czas jest nieprzytomny', 'intent.unconscious');
+  nlp.addDocument('pl', 'W ogóle nie reaguje na moje wołanie', 'intent.unconscious');
+  nlp.addDocument('pl', 'Nie reaguje na nic, boże on chyba nie żyje!', 'intent.unconscious');
+  nlp.addDocument('pl', 'Nie, zero kontaktu z tą osobą', 'intent.unconscious');
+  nlp.addDocument('pl', 'Wciąż nie odzyskał świadomości', 'intent.unconscious');
+  nlp.addDocument('pl', 'Nie otwiera oczu, mimo że go szarpię', 'intent.unconscious');
+  nlp.addDocument('pl', 'Brak jakiejkolwiek reakcji na bodźce', 'intent.unconscious');
+  nlp.addDocument('pl', 'Ona śpi i nie da się jej obudzić', 'intent.unconscious');
+  nlp.addDocument('pl', 'Dalej jest wiotki i nieprzytomny', 'intent.unconscious');
+  nlp.addDocument('pl', 'Nie ma z nim żadnego kontaktu', 'intent.unconscious');
+  nlp.addDocument('pl', 'Próbuję go ocucić, ale nic to nie daje', 'intent.unconscious');
+  nlp.addDocument('pl', 'Leży bezwładnie i nie odpowiada', 'intent.unconscious');
+  nlp.addDocument('pl', 'Stan nieprzytomności się utrzymuje', 'intent.unconscious');
+  nlp.addDocument('pl', 'Zupełny brak reakcji na głos', 'intent.unconscious');
+  nlp.addDocument('pl', 'On jest w głębokiej śpiączce, nie reaguje', 'intent.unconscious');
+  nlp.addDocument('pl', 'Nadal nie kontaktuje ze światem', 'intent.unconscious');
+  nlp.addDocument('pl', 'Oczy zamknięte, ciało bezwładne', 'intent.unconscious');
+  nlp.addDocument('pl', 'Nic do niego nie dociera, jest nieprzytomny', 'intent.unconscious');
+  nlp.addDocument('pl', 'Nie, w ogóle się nie rusza', 'intent.unconscious');
+  nlp.addDocument('pl', 'Niestety, jest zupełnie nieświadomy', 'intent.unconscious');
+  nlp.addDocument('pl', 'Zero odzewu z jego strony', 'intent.unconscious');
+  nlp.addDocument('pl', 'Nie, jest zupełnie nieprzytomny', 'intent.unconscious');
+
+  // 3. Oddycha - intent.breathing
+  nlp.addDocument('pl', 'Tak, wyczuwam regularny oddech', 'intent.breathing');
+  nlp.addDocument('pl', 'Klatka piersiowa unosi się prawidłowo', 'intent.breathing');
+  nlp.addDocument('pl', 'Widzę, że oddycha', 'intent.breathing');
+  nlp.addDocument('pl', 'Tak, oddech jest zachowany', 'intent.breathing');
+  nlp.addDocument('pl', 'Słyszę jak nabiera powietrza', 'intent.breathing');
+  nlp.addDocument('pl', 'Oddycha, ale bardzo płytko', 'intent.breathing');
+  nlp.addDocument('pl', 'Jego płuca pracują', 'intent.breathing');
+  nlp.addDocument('pl', 'Czuć powiew powietrza z nosa', 'intent.breathing');
+  nlp.addDocument('pl', 'Tak, oddycha spokojnie', 'intent.breathing');
+  nlp.addDocument('pl', 'Ma miarowy, prawidłowy oddech', 'intent.breathing');
+  nlp.addDocument('pl', 'Sprawdziłem, oddech jest obecny', 'intent.breathing');
+  nlp.addDocument('pl', 'Klatka rusza się w górę i w dół', 'intent.breathing');
+  nlp.addDocument('pl', 'Czuję jego oddech na dłoni', 'intent.breathing');
+  nlp.addDocument('pl', 'Tak, bierze wdechy', 'intent.breathing');
+  nlp.addDocument('pl', 'Lustro zaparowało, więc oddycha', 'intent.breathing');
+  nlp.addDocument('pl', 'Pobiera powietrze regularnie', 'intent.breathing');
+  nlp.addDocument('pl', 'Tak, oddycha, choć rzęzi', 'intent.breathing');
+  nlp.addDocument('pl', 'Widzę ruchy klatki piersiowej', 'intent.breathing');
+  nlp.addDocument('pl', 'Ona oddycha, widzę to wyraźnie', 'intent.breathing');
+  nlp.addDocument('pl', 'Tak, tętno i oddech są', 'intent.breathing');
+  nlp.addDocument('pl', 'Tak, oddycha normalnie', 'intent.breathing');
+  nlp.addDocument('pl', 'Czuję oddech na swoim policzku', 'intent.breathing');
+
+  // 4. Brak oddechu - intent.no_breathing
+  nlp.addDocument('pl', 'Nie, ona w ogóle nie oddycha', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Klatka piersiowa stoi nieruchomo', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Brak jakiegokolwiek ruchu powietrza', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Nie słyszę oddechu, nic a nic', 'intent.no_breathing');
+  nlp.addDocument('pl', 'On nie bierze tchu', 'intent.no_breathing');
+  nlp.addDocument('pl', 'To bezdech, on nie oddycha', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Nie wyczuwam tętna ani oddechu', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Jej płuca nie pracują', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Zero oddechu przez ostatnie 10 sekund', 'intent.no_breathing');
+  nlp.addDocument('pl', 'On już nie oddycha, ratujcie go', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Nie ma żadnych ruchów klatki', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Nie czuję powietrza przy ustach', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Oddech ustał całkowicie', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Płuca stanęły, on nie oddycha', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Nie, oddech jest niewyczuwalny', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Ciało sztywnieje, brak oddechu', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Nic nie czuję na policzku, nie oddycha', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Nie dycha, zrób coś!', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Brak funkcji oddechowych', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Niestety, oddech się zatrzymał', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Nie, nie oddycha', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Brak oddechu, nic nie czuję', 'intent.no_breathing');
+
+  // --- LOGIKA AED ---
+
+  // 1. AED jest dostępny i przy poszkodowanym - intent.aed.here
+  nlp.addDocument('pl', 'Mam defibrylator już przy sobie', 'intent.aed.here');
+  nlp.addDocument('pl', 'AED jest rozpakowane obok pacjenta', 'intent.aed.here');
+  nlp.addDocument('pl', 'Skrzynka z AED leży tuż obok mnie', 'intent.aed.here');
+  nlp.addDocument('pl', 'Przynieśli mi AED, mam je', 'intent.aed.here');
+  nlp.addDocument('pl', 'Urządzenie jest gotowe do użycia tutaj', 'intent.aed.here');
+  nlp.addDocument('pl', 'Trzymam defibrylator w rękach', 'intent.aed.here');
+  nlp.addDocument('pl', 'AED jest już na miejscu zdarzenia', 'intent.aed.here');
+  nlp.addDocument('pl', 'Mam sprzęt pod ręką', 'intent.aed.here');
+  nlp.addDocument('pl', 'Defibrylator dotarł do nas', 'intent.aed.here');
+  nlp.addDocument('pl', 'Udało się przynieść AED do chorego', 'intent.aed.here');
+  nlp.addDocument('pl', 'Maszyna jest gotowa obok niego', 'intent.aed.here');
+  nlp.addDocument('pl', 'Oto AED, mamy je', 'intent.aed.here');
+  nlp.addDocument('pl', 'Urządzenie stoi przy głowie poszkodowanego', 'intent.aed.here');
+  nlp.addDocument('pl', 'Mam AED, otwieram je', 'intent.aed.here');
+  nlp.addDocument('pl', 'Właśnie kładę AED obok niego', 'intent.aed.here');
+  nlp.addDocument('pl', 'Otrzymałem defibrylator, jest tutaj', 'intent.aed.here');
+  nlp.addDocument('pl', 'Posiadamy AED na miejscu akcji', 'intent.aed.here');
+  nlp.addDocument('pl', 'Sprzęt jest już obecny', 'intent.aed.here');
+  nlp.addDocument('pl', 'AED jest dostarczone do pacjenta', 'intent.aed.here');
+  nlp.addDocument('pl', 'Tak, defibrylator jest obok', 'intent.aed.here');
+  nlp.addDocument('pl', 'Mamy AED na miejscu', 'intent.aed.here');
+  nlp.addDocument('pl', 'Defibrylator jest już przy mnie', 'intent.aed.here');
+
+  // 2. Ktoś poszedł po AED, ale jeszcze nie wrócił - intent.aed.someone_went
+  nlp.addDocument('pl', 'Czekamy, aż ktoś wróci z defibrylatorem', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Wysłaliśmy kogoś do recepcji po AED', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Pomocnik pobiegł szukać urządzenia', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'On jeszcze nie wrócił ze sprzętem', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Ktoś pobiegł po AED, czekam na nich', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Szukają teraz defibrylatora w budynku', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Kolega poszedł po maszynę na dół', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Wciąż czekam na dostarczenie AED', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Pobiegli po to, zaraz powinni być', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Wysłannik jest w drodze po defibrylator', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Ktoś szuka skrzynki z AED', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Zaraz ktoś tu przyniesie AED', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Osoba trzecia pobiegła po pomoc medyczną i sprzęt', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Czekamy na powrót osoby z AED', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'On poszedł to sprawdzić, czy jest AED', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Ktoś się oddalił, żeby przynieść defibrylator', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Pobiegli po AED do ochrony', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Zaraz będzie tu sprzęt, ktoś po niego poleciał', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Czekamy na urządzenie, kolega po nie poszedł', 'intent.aed.someone_went');
+  nlp.addDocument('pl', 'Ochoniarz poszedł przynieść defibrylator', 'intent.aed.someone_went');
+
+  // 3. AED jest dostępny, ale nie przy poszkodowanym - intent.aed.know_where
+  nlp.addDocument('pl', 'AED wisi na ścianie w korytarzu', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Wiem, że defibrylator jest w portierni', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Widzę stąd szafkę z AED', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Urządzenie jest dostępne przy wejściu', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Tam na dole wisi defibrylator', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'W tym biurze zawsze jest AED', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Znam lokalizację najbliższego AED', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Wiem gdzie to jest, przy windach', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Defibrylator znajduje się w holu głównym', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Tak, widziałem tabliczkę z AED', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Urządzenie jest w zasięgu wzroku w recepcji', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Szafka z AED jest naprzeciwko kasy', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Zauważyłem defibrylator przy automacie', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'AED jest na zewnątrz budynku', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Wiem gdzie to wisi, w strefie obsługi', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Tam przy schodach jest zielona skrzynka AED', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Lokalizacja AED jest mi znana', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Tak, widzę defibrylator przy bramkach', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Maszyna jest w pokoju socjalnym', 'intent.aed.know_where');
+  nlp.addDocument('pl', 'Wiem, że w tym budynku jest AED', 'intent.aed.know_where');
+
+  // 4. Brak AED - intent.aed.none
+  nlp.addDocument('pl', 'Tu nie ma żadnego defibrylatora', 'intent.aed.none');
+  nlp.addDocument('pl', 'Nigdzie nie widzę AED', 'intent.aed.none');
+  nlp.addDocument('pl', 'Nie mamy dostępu do sprzętu medycznego', 'intent.aed.none');
+  nlp.addDocument('pl', 'W tej okolicy nie ma defibrylatora', 'intent.aed.none');
+  nlp.addDocument('pl', 'Brak urządzenia AED w pobliżu', 'intent.aed.none');
+  nlp.addDocument('pl', 'Nie posiadamy tu defibrylatora', 'intent.aed.none');
+  nlp.addDocument('pl', 'Niestety, tu nie ma AED', 'intent.aed.none');
+  nlp.addDocument('pl', 'Szukaliśmy, ale nie znaleźliśmy defibrylatora', 'intent.aed.none');
+  nlp.addDocument('pl', 'To prywatny dom, nie ma tu AED', 'intent.aed.none');
+  nlp.addDocument('pl', 'W tym sklepie nie wisi żadne urządzenie', 'intent.aed.none');
+  nlp.addDocument('pl', 'Nie ma tu takiego sprzętu', 'intent.aed.none');
+  nlp.addDocument('pl', 'Jesteśmy w szczerym polu, brak AED', 'intent.aed.none');
+  nlp.addDocument('pl', 'Nikt nie ma defibrylatora', 'intent.aed.none');
+  nlp.addDocument('pl', 'Brak aparatury do reanimacji', 'intent.aed.none');
+  nlp.addDocument('pl', 'W całym budynku nie ma AED', 'intent.aed.none');
+  nlp.addDocument('pl', 'Nie mam pod ręką żadnego urządzenia', 'intent.aed.none');
+  nlp.addDocument('pl', 'Defibrylatora brak', 'intent.aed.none');
+  nlp.addDocument('pl', 'Nie, tu nie znajdziemy AED', 'intent.aed.none');
+  nlp.addDocument('pl', 'W tej fabryce zapomnieli o AED', 'intent.aed.none');
+  nlp.addDocument('pl', 'Nie ma opcji, żeby tu był defibrylator', 'intent.aed.none');
+
+  // 5. Ktoś został posłany po AED - intent.aed.someone_sent
+  nlp.addDocument('pl', 'Wysłałem właśnie kogoś po sprzęt', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Poprosiłem przechodnia o przyniesienie AED', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Ktoś już leci po defibrylator', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Zadysponowałem osobę do szukania AED', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Posłałem syna do straży po AED', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Nakazałem przynieść urządzenie', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Ktoś z pracowników już po to pobiegł', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Delegowałem kogoś do odnalezienia AED', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Już wysyłam kogoś po maszynę', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Ochroniarz został wysłany po defibrylator', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Kazałem mu biec po AED', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Właśnie posłałem ludzi po sprzęt medyczny', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Zaraz ktoś dostarczy AED, poszli po nie', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Wysłałem sąsiada po AED do apteki', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Ktoś już został oddelegowany po AED', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Poprosiłem ich, żeby znaleźli AED', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Posłałem kolegę, żeby przyniósł skrzynkę', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Już biegną po defibrylator', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Ktoś poszedł sprawdzić, czy jest AED przy bramie', 'intent.aed.someone_sent');
+  nlp.addDocument('pl', 'Wydałem polecenie przyniesienia AED', 'intent.aed.someone_sent');
+
+  // 6. Jestem sam, nie mam kogo wysłać - intent.aed.alone
+  nlp.addDocument('pl', 'Jestem tu zupełnie sam', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Nie mam kogo wysłać po urządzenie', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Brak osób trzecich, które mogłyby pomóc', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Jestem tylko ja i poszkodowany', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Nikt inny nie widzi tego zdarzenia', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Nie ma nikogo, kogo mógłbym poprosić o pomoc', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Sam muszę wszystko robić', 'intent.aed.alone');
+  nlp.addDocument('pl', 'W okolicy nie ma żywej duszy', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Nie mam pomocnika przy sobie', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Jestem jedynym świadkiem', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Pustki, nikogo nie ma w pobliżu', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Nie mogę odejść od pacjenta, a jestem sam', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Samotnie udzielam pomocy', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Nie mam kogo poprosić o przyniesienie AED', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Nikogo nie widzę na ulicy', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Jestem zdany tylko na siebie', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Brak kogokolwiek do pomocy', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Nikt mi nie pomoże przynieść sprzętu', 'intent.aed.alone');
+  nlp.addDocument('pl', 'Jestem sam w tym pomieszczeniu', 'intent.aed.alone');
+  nlp.addDocument('pl', 'W pojedynkę nic nie zdziałam z AED', 'intent.aed.alone');
+
+  // 7. AED jest daleko - intent.aed.far
+  nlp.addDocument('pl', 'Defibrylator jest na drugim końcu osiedla', 'intent.aed.far');
+  nlp.addDocument('pl', 'AED wisi kilometr stąd', 'intent.aed.far');
+  nlp.addDocument('pl', 'To zbyt daleko, żeby po to biec', 'intent.aed.far');
+  nlp.addDocument('pl', 'Najbliższy sprzęt jest na stacji benzynowej daleko stąd', 'intent.aed.far');
+  nlp.addDocument('pl', 'AED znajduje się w innej dzielnicy', 'intent.aed.far');
+  nlp.addDocument('pl', 'Urządzenie jest zbyt oddalone', 'intent.aed.far');
+  nlp.addDocument('pl', 'Zanim tam dojdę, minie wieczność', 'intent.aed.far');
+  nlp.addDocument('pl', 'To jest kawał drogi stąd', 'intent.aed.far');
+  nlp.addDocument('pl', 'Za daleko na pieszą wyprawę po AED', 'intent.aed.far');
+  nlp.addDocument('pl', 'Defibrylator jest w budynku oddalonym o 10 minut', 'intent.aed.far');
+  nlp.addDocument('pl', 'Dystans do AED jest zbyt duży', 'intent.aed.far');
+  nlp.addDocument('pl', 'Nie zdążę przynieść tego na czas, to za daleko', 'intent.aed.far');
+  nlp.addDocument('pl', 'Maszyna jest na samej górze biurowca', 'intent.aed.far');
+  nlp.addDocument('pl', 'To spory kawałek stąd', 'intent.aed.far');
+  nlp.addDocument('pl', 'AED jest nieosiągalne w krótkim czasie', 'intent.aed.far');
+  nlp.addDocument('pl', 'Daleko stąd widziałem taki sprzęt', 'intent.aed.far');
+  nlp.addDocument('pl', 'Musiałbym jechać autem po to AED', 'intent.aed.far');
+  nlp.addDocument('pl', 'To nie jest w bliskim sąsiedztwie', 'intent.aed.far');
+  nlp.addDocument('pl', 'Urządzenie jest zbyt daleko od miejsca wypadku', 'intent.aed.far');
+  nlp.addDocument('pl', 'AED jest w porcie, a my na plaży, to daleko', 'intent.aed.far');
+
+  // 8. AED jest w pobliżu - intent.aed.near
+  nlp.addDocument('pl', 'AED jest tuż za rogiem', 'intent.aed.near');
+  nlp.addDocument('pl', 'Defibrylator wisi u sąsiada obok', 'intent.aed.near');
+  nlp.addDocument('pl', 'W tym samym korytarzu jest urządzenie', 'intent.aed.near');
+  nlp.addDocument('pl', 'To tylko kilka metrów stąd', 'intent.aed.near');
+  nlp.addDocument('pl', 'AED znajduje się w tym samym budynku', 'intent.aed.near');
+  nlp.addDocument('pl', 'Bardzo blisko jest szafka z AED', 'intent.aed.near');
+  nlp.addDocument('pl', 'Na parterze wisi defibrylator, jesteśmy na pierwszym', 'intent.aed.near');
+  nlp.addDocument('pl', 'Blisko nas jest apteka z AED', 'intent.aed.near');
+  nlp.addDocument('pl', 'To jest na wyciągnięcie ręki w recepcji', 'intent.aed.near');
+  nlp.addDocument('pl', 'Widzę tabliczkę AED niedaleko', 'intent.aed.near');
+  nlp.addDocument('pl', 'Zaraz obok w sklepie jest defibrylator', 'intent.aed.near');
+  nlp.addDocument('pl', 'W zasięgu minuty biegu jest AED', 'intent.aed.near');
+  nlp.addDocument('pl', 'To blisko, ktoś może zaraz skoczyć', 'intent.aed.near');
+  nlp.addDocument('pl', 'Szafka z AED jest w sąsiednim pokoju', 'intent.aed.near');
+  nlp.addDocument('pl', 'Mamy defibrylator na tym piętrze', 'intent.aed.near');
+  nlp.addDocument('pl', 'To niedaleko stąd, widzę skrzynkę', 'intent.aed.near');
+  nlp.addDocument('pl', 'W hali obok jest AED', 'intent.aed.near');
+  nlp.addDocument('pl', 'To rzut beretem, tam wisi AED', 'intent.aed.near');
+  nlp.addDocument('pl', 'Bliziutko jest stacja z AED', 'intent.aed.near');
+  nlp.addDocument('pl', 'Wiem, że AED jest tuż przy wejściu', 'intent.aed.near');
+
+  // 9. Już wróciłem z AED - intent.aed.back
+  nlp.addDocument('pl', 'Mam już defibrylator, właśnie wróciłem', 'intent.aed.back');
+  nlp.addDocument('pl', 'Przyniosłem AED, co teraz?', 'intent.aed.back');
+  nlp.addDocument('pl', 'Jestem z powrotem ze sprzętem', 'intent.aed.back');
+  nlp.addDocument('pl', 'Dostarczyłem defibrylator do poszkodowanego', 'intent.aed.back');
+  nlp.addDocument('pl', 'Mam go! Już jestem na miejscu', 'intent.aed.back');
+  nlp.addDocument('pl', 'Udało mi się przynieść AED, jestem z powrotem', 'intent.aed.back');
+  nlp.addDocument('pl', 'Wróciłem ze skrzynką', 'intent.aed.back');
+  nlp.addDocument('pl', 'Mam to urządzenie, jestem obok', 'intent.aed.back');
+  nlp.addDocument('pl', 'Oto AED, zdążyłem wrócić', 'intent.aed.back');
+  nlp.addDocument('pl', 'Defibrylator już tu jest, wróciłem', 'intent.aed.back');
+  nlp.addDocument('pl', 'Właśnie dobiegłem z powrotem z AED', 'intent.aed.back');
+  nlp.addDocument('pl', 'Jestem z AED przy pacjencie', 'intent.aed.back');
+  nlp.addDocument('pl', 'Przyniesione! Co dalej robić?', 'intent.aed.back');
+  nlp.addDocument('pl', 'Już wróciłem z pomocy z defibrylatorem', 'intent.aed.back');
+  nlp.addDocument('pl', 'AED jest ze mną, wróciłem szybko', 'intent.aed.back');
+  nlp.addDocument('pl', 'Mamy to, wróciłem ze sprzętem', 'intent.aed.back');
+  nlp.addDocument('pl', 'Otrzymałem AED i jestem z nim tutaj', 'intent.aed.back');
+  nlp.addDocument('pl', 'Wróciłem, kładę defibrylator obok', 'intent.aed.back');
+  nlp.addDocument('pl', 'Jestem z powrotem, przyniosłem co trzeba', 'intent.aed.back');
+  nlp.addDocument('pl', 'Melduję się z AED na miejscu', 'intent.aed.back');
+
+  // --- RESUSCYTACJA I FEEDBACK ---
+
+  // 1. Feedback o zakończeniu analizy rytmu - intent.cpr.analysis_done
+  nlp.addDocument('pl', 'AED powiedziało, że analiza zakończona', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Skończyło analizować rytm serca', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Komunikat: analiza zakończona, odsunąć się', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Defibrylator przestał analizować', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Maszyna skończyła badanie', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Mamy wynik analizy z AED', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Urządzenie mówi, że już po analizie', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Analiza rytmu dobiegła końca', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Urządzenie kazało przestać, bo analizowało i już skończyło', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'AED już nie analizuje', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Przerwało analizę, bo skończyło sprawdzać', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Usłyszałem sygnał końca analizy', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Defibrylator zakończył skanowanie pacjenta', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Już po wszystkim, urządzenie sprawdziło rytm', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'AED wydało werdykt po analizie', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Zakończono proces analizowania', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Analiza wykonana, czekam na instrukcje', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Urządzenie przestało wydawać dźwięki analizy', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Koniec analizy rytmu przez AED', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'AED skończyło swoją pracę nad analizą', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Użytkownik mówi o zakończeniu analizy', 'intent.cpr.analysis_done');
+  nlp.addDocument('pl', 'Urządzenie skończyło analizować rytm', 'intent.cpr.analysis_done');
+
+  // 2. Feedback negatywny - poszkodowany nadal nie oddycha - intent.cpr.failed
+  nlp.addDocument('pl', 'Uciskam już długo, ale on nie reaguje', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Moja pomoc nic nie daje, ciągle nie dycha', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Nadal brak oznak życia po masażu serca', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'To nic nie pomaga, on wciąż jest siny', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Robię to, co mówisz, ale on nie ożywa', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Mimo reanimacji, oddech nie wraca', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Nie widzę poprawy po moich uciskach', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Nic się nie zmienia, wciąż nie oddycha', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Masaż serca nie przynosi skutku', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'On się nie budzi, mimo moich starań', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Cały czas martwy punkt, zero oddechu', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Uciskanie klatki nic nie zmienia', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Niestety, resuscytacja na razie nie działa', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'On nie reaguje na moją pomoc', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Pompuję, ale on nadal jest nieprzytomny i bezdechu', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Nie widzę, żeby zaczął oddychać', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Dalej nic, żadnej reakcji na masaż', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Moje wysiłki nie przynoszą efektu', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Wciąż brak tętna, mimo CPR', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Nie udaje się przywrócić oddechu', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Użytkownik mówi że to nic nie dało', 'intent.cpr.failed');
+  nlp.addDocument('pl', 'Dalej nie oddycha mimo uciskania', 'intent.cpr.failed');
+
+  // 3. Feedback pozytywny - oddech wrócił - intent.cpr.breathing_restored
+  nlp.addDocument('pl', 'O rany, on zaczął oddychać!', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Wrócił mu oddech, widzę jak dycha', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Zaczął kaszleć i łapać powietrze', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Oddech wrócił po defibrylacji', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Chyba go uratowaliśmy, bo oddycha', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Znowu dycha, klatka zaczęła pracować', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Otworzył oczy i wziął głęboki wdech', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Zaczął samodzielnie oddychać', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Czuję tętno i widzę oddech', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Udało się! Oddech powrócił', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Pacjent zaczął przejawiać oznaki życia', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Ożył! Widzę jak nabiera tchu', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Funkcje życiowe wróciły, oddycha', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Wykonał głęboki wdech, jest super', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Złapał powietrze i się poruszył', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Reanimacja skuteczna, oddycha już sam', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Słyszę jego oddech, wrócił!', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'On oddycha samodzielnie, co teraz?', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Pojawił się regularny oddech', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Pacjent odzyskał oddech po uciskaniu', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Zaczął się poruszać, chyba oddycha', 'intent.cpr.breathing_restored');
+  nlp.addDocument('pl', 'Oddech wrócił, czuję go wyraźnie', 'intent.cpr.breathing_restored');
+
+  // 4. Pomyłka - poszkodowany jednak nie oddycha - intent.no_breathing
+  nlp.addDocument('pl', 'Cofam to, on jednak nie oddycha', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Źle spojrzałem, on w ogóle nie dycha', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Pomyliłem się, on wciąż nie oddycha', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Znowu przestał oddychać, tragedia', 'intent.no_breathing');
+  nlp.addDocument('pl', 'To tylko mi się zdawało, on nie bierze tchu', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Wcześniej myślałem, że tak, ale jednak nie oddycha', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Błąd, klatka piersiowa wcale się nie rusza', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Niestety, to nie był oddech, on nie żyje', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Jednak brak oddechu, spanikowałem', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Sprawdziłem jeszcze raz, on nie oddycha', 'intent.no_breathing');
+  nlp.addDocument('pl', 'To było tylko drgnięcie, on nie bierze tchu', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Wycofuję co powiedziałem, nie oddycha', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Znowu nie czuję żadnego oddechu', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Urojenie, on jednak w ogóle nie pracuje płucami', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Zmylił mnie, on wciąż nie oddycha', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Szybko, jednak nie oddycha, wracam do ucisków', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Myślałem, że dycha, ale on jest siny i bezdechu', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Błędna ocena, brak czynności oddechowych', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Nie, jednak nie czuję powietrza, on nie dycha', 'intent.no_breathing');
+  nlp.addDocument('pl', 'To nie był oddech, on wciąż nie reaguje', 'intent.no_breathing');
+  nlp.addDocument('pl', 'Jednak się pomyliłem, jednak nie oddycha', 'intent.no_breathing');
+
   await nlp.train();
-  return nlp;
+
+  
+  /**
+   * Poprawiona funkcja dopasowana do main.js
+   * Przyjmuje dwa argumenty: język oraz tekst
+   */
+  async function process(lang, text) {
+    // Wywołujemy oryginalną metodę z NLP.js przekazując język i tekst
+    const response = await nlp.process(lang, text);
+    
+    //console.log(`[NLP] Tekst: ${text} | Intencja: ${response.intent} | Pewność: ${response.score}`);
+    
+    // Kluczowy filtr: Jeśli bot słabo zrozumiał intencję, traktujemy to jako brak dopasowania
+    if (response.score < 0.5) {
+      return { intent: 'None', score: response.score };
+    }
+    return response;
+  }
+
+  // Zwracamy obiekt z funkcją process, który w main.js ląduje jako nlpEngine
+  return { process };
+
+  // Legacy code - zwracał cały obiekt nlp, ale teraz zwracamy tylko funkcję process
+  // return nlp;
 }
