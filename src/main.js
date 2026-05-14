@@ -50,113 +50,113 @@ const scenarioRegistry = {
   'backpain': { 
     machine: backpainMachine, 
     dialog: backpainDialog, 
-    icon: icons.placeholder, // Ścieżka do SVG
+    icon: icons.back, // Ścieżka do SVG
     title: 'Ból Pleców', 
     desc: 'Urazy i silne bóle kręgosłupa mogą prowadzić do niedowładów. Istotne jest ustalenie występowania zaburzeń neurologicznych.' 
   },
   'pregnancy': { 
     machine: pregnancyMachine, 
     dialog: pregnancyDialog, 
-    icon: icons.placeholder, // Ścieżka do SVG
+    icon: icons.pregnancy, // Ścieżka do SVG
     title: 'Ciąża, Poród, Poronienie', 
     desc: 'Specyficzne stany związane z ciąży, porodem i poronieniem wymagają szybkiej identyfikacji i podjęcia działań ratunkowych.' 
   },
   'diabetes': { 
     machine: diabetesMachine, 
     dialog: diabetesDialog, 
-    icon: icons.placeholder, // Ścieżka do SVG
+    icon: icons.sugar, // Ścieżka do SVG
     title: 'Cukrzyca', 
     desc: 'Zaburzenia glikemii mogą prowadzić do stanów zagrożenia życia. Kluczowe jest szybkie rozpoznanie i podjęcie działań ratunkowych.' 
   },
   'seizures': { 
     machine: seizuresMachine, 
     dialog: seizuresDialog, 
-    icon: icons.placeholder, // Ścieżka do SVG
+    icon: icons.uncomfortable, // Ścieżka do SVG
     title: 'Drgawki', 
     desc: 'Ataki drgawkowe mogą być objawem poważnych schorzeń neurologicznych. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.' 
   },
   'dyspnea': { 
     machine: dyspneaMachine, 
     dialog: dyspneaDialog, 
-    icon: icons.placeholder, // Ścieżka do SVG
+    icon: icons.lungs, // Ścieżka do SVG
     title: 'Duszność', 
     desc: 'Duszność może być objawem wielu schorzeń, w tym chorób serca i płuc. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.' 
   },
   'hemorrhage': { 
     machine: hemorrhageMachine, 
     dialog: hemorrhageDialog, 
-    icon: icons.placeholder, // Ścieżka do SVG
+    icon: icons.dripping, // Ścieżka do SVG
     title: 'Krwotok', 
     desc: 'Krwotok, zarówno zewnętrzny, jak i wewnętrzny, stanowi bezpośrednie zagrożenie życia. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.'
   },
   'lying': { 
     machine: lyingMachine, 
     dialog: lyingDialog, 
-    icon: icons.placeholder, // Ścieżka do SVG
+    icon: icons.lying, // Ścieżka do SVG
     title: 'Osoba Leżąca', 
     desc: 'Osoba leżąca, zwłaszcza nieprzytomna, wymaga szybkiej oceny stanu zdrowia i podjęcia odpowiednich działań ratunkowych.' 
   },
   'unconscious': { 
     machine: unconsciousMachine, 
     dialog: unconsciousDialog, 
-    icon: icons.placeholder, // Ścieżka do SVG
+    icon: icons.unconscious, // Ścieżka do SVG
     title: 'Nieprzytomny', 
     desc: 'Nieprzytomny pacjent wymaga natychmiastowej oceny stanu zdrowia i podjęcia odpowiednich działań ratunkowych.' 
   },
   'burns': { 
     machine: burnsMachine, 
     dialog: burnsDialog, 
-    icon: icons.placeholder, // Ścieżka do SVG
+    icon: icons.flame, // Ścieżka do SVG
     title: 'Oparzenia', 
     desc: 'Oparzenia, zwłaszcza rozległe lub głębokie, stanowią poważne zagrożenie dla zdrowia. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.' 
   },
   'hypothermia': { 
     machine: hypothermiaMachine, 
     dialog: hypothermiaDialog, 
-    icon: icons.placeholder, // Ścieżka do SVG
+    icon: icons.snowflake, // Ścieżka do SVG
     title: 'Hipotermia', 
     desc: 'Hipotermia, czyli obniżenie temperatury ciała poniżej normy, może prowadzić do poważnych komplikacji zdrowotnych. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.'
   },
   'paralysis': {
     machine: paralysisMachine,
     dialog: paralysisDialog,
-    icon: icons.placeholder, // Ścieżka do SVG
+    icon: icons.handicap, // Ścieżka do SVG
     title: 'Paraliż', 
     desc: 'Paraliż, czyli utrata zdolności ruchowych, może być objawem poważnych schorzeń neurologicznych. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.'
   },
   'electrocution': {
     machine: electrocutionMachine,
     dialog: electrocutionDialog,
-    icon: icons.placeholder, // Ścieżka do SVG
+    icon: icons.lighting, // Ścieżka do SVG
     title: 'Porażenie prądem', 
     desc: 'Porażenie prądem, zwłaszcza wysokim napięciem, może prowadzić do poważnych obrażeń i stanowi bezpośrednie zagrożenie życia. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe, jednak najważniejsze jest twoje bezpieczeństwo.'
   },
   'hanging': {
     machine: hangingMachine,
     dialog: hangingDialog,
-    icon: icons.placeholder, // Ścieżka do SVG
+    icon: icons.rope, // Ścieżka do SVG
     title: 'Powieszenie', 
     desc: 'Powieszenie, czyli sytuacja, w której osoba jest powieszona na czymś, co uciska szyję, może prowadzić do uduszenia i stanowi bezpośrednie zagrożenie życia. Jest to sytuacja o najwyższym stopniu krytyczności.'
   },
   'cardiology': {
     machine: cardiologyMachine,
     dialog: cardiologyDialog,
-    icon: icons.placeholder, // Ścieżka do SVG
+    icon: icons.heart, // Ścieżka do SVG
     title: 'Problemy kardiologiczne', 
     desc: 'Problemy kardiologiczne, takie jak zawał serca czy arytmia, mogą prowadzić do nagłego zatrzymania krążenia i stanowią bezpośrednie zagrożenie życia. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.'
   },
   'trauma': {
     machine: traumaMachine,
     dialog: traumaDialog,
-    icon: icons.placeholder, // Ścieżka do SVG
+    icon: icons.injury, // Ścieżka do SVG
     title: 'Urazy, obrażenia', 
     desc: 'Urazy, czyli poważne obrażenia ciała spowodowane urazem, mogą prowadzić do krwotoków, uszkodzeń narządów wewnętrznych i stanowi bezpośrednie zagrożenie życia. Szybka identyfikacja i podjęcie działań ratunkowych są kluczowe.'
   },
   'cpr': {
     machine: cprMachine,
     dialog: cprDialog,
-    icon: icons.placeholder, // Ścieżka do SVG
-    title: 'NZK - Resuscytacja', 
+    icon: icons.nzk, // Ścieżka do SVG
+    title: 'Nagłe zatrzymanie krążenia', 
     desc: 'Nagłe zatrzymanie krążenia (NZK) to stan, w którym serce przestaje efektywnie pompować krew. Szybka identyfikacja i podjęcie działań ratunkowych, takich jak resuscytacja krążeniowo-oddechowa (RKO) i użycie defibrylatora AED, są kluczowe dla zwiększenia szans na przeżycie.'
   }
 };

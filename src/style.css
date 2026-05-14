@@ -208,8 +208,7 @@ body {
 
 .grid-item { position:relative; background-color: var(--card-beige); aspect-ratio: 1 / 1; border-radius: 12px; padding: 15px 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: var(--shadow-hard); cursor: pointer; border: none; aspect-ratio: 1; transition: transform 0.1s; }
 
-.grid-item .icon {
-  width: 80%;
+.grid-item .icon {  width: 80%;
   position: absolute;
   top: 0;
   left: 50%; /* jeśli chcesz wyśrodkować poziomo */
@@ -222,6 +221,29 @@ body {
 
 .grid-item .material-symbols-outlined { font-size: 32px; color: var(--text-dark); margin-bottom: 8px; }
 .grid-item span { margin-bottom: -55px; font-size: 16px; font-weight: 600; color: var(--text-dark); text-align: center; }
+
+/* Specyficzny styl dla przycisku CPR */
+.grid-item[data-scenario="cpr"] {
+  grid-column: 1 / -1;    /* Rozciąga element od pierwszej do ostatniej linii siatki */
+  aspect-ratio: auto;     /* Wyłączamy kwadrat, żeby nie był za wysoki */
+  height: 110px;          /* Ustawiamy wysokość zbliżoną do pozostałych ikon */
+  flex-direction: row;    /* Zmieniamy układ na poziomy (ikona obok tekstu) */
+  justify-content: center;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+/* Korekta ikony dla szerokiego przycisku */
+.grid-item[data-scenario="cpr"] .icon {
+  width: 100px;            /* Dopasowujemy rozmiar ikony */
+  height: auto;
+}
+
+/* Korekta tekstu dla szerokiego przycisku */
+.grid-item[data-scenario="cpr"] span {
+  font-size: 18px;        /* Możemy nieco powiększyć czcionkę, bo jest więcej miejsca */
+  text-align: left;
+}
 
 /* Ekran Opcji */
 .info-card { background-color: var(--card-beige); border-radius: var(--border-radius); padding: 20px; position: relative; margin-top: 30px; box-shadow: var(--shadow-soft); text-align: left; }

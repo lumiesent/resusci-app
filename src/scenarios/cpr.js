@@ -157,7 +157,6 @@ export const cprDialog = {
     hint: 'Ułóż poszkodowanego na boku, aby zabezpieczyć drogi oddechowe.'
   },
    
-
   recovery_position_final: {
     message: 'Proszę ułożyć osobę poszkodowaną w pozycji bocznej bezpiecznej.',
     hint: 'Ułóż poszkodowanego na boku, aby zabezpieczyć drogi oddechowe.'
@@ -256,6 +255,7 @@ export const cprMachine = createMachine({
     ask_consciousness: {
       on: {
         'intent.conscious': 'wait_for_services',
+        'intent.intent.cpr.unconscious': 'ask_breathing',
         'intent.unconscious': 'ask_breathing',
         'None': { // Użytkownik bełkotał lub NLP nic nie dopasowało
           target: 'ask_consciousness', 
@@ -267,7 +267,9 @@ export const cprMachine = createMachine({
     ask_breathing: {
       on: {
         'intent.breathing': 'recovery_position',
+        'intent.cpr.breathing': 'recovery_position',
         'intent.no_breathing': 'cpr_init',
+        'intent.cpr.not_breathing': 'cpr_init',
         'None': { // Użytkownik bełkotał lub NLP nic nie dopasowało
           target: 'ask_breathing', 
           actions: () => console.log('Nie zrozumiałem, pytam jeszcze raz o oddychanie') 
@@ -345,6 +347,9 @@ export const cprMachine = createMachine({
     cpr_no_aed: {
       on: {
         'intent.cpr.failed': 'cpr_no_aed_loop',
+        'intent.no_breathing': 'cpr_no_aed_loop', // Powrót do RKO/AED jeśli pomyłka
+        'intent.cpr.not_breathing': 'cpr_no_aed_loop',
+
         'intent.cpr.breathing_restored': 'check_breathing_confirm_no_aed',
         'intent.breathing': 'check_breathing_confirm_no_aed',
 
@@ -359,7 +364,10 @@ export const cprMachine = createMachine({
       on: {
         'intent.cpr.breathing_restored': 'check_breathing_confirm_no_aed',
         'intent.breathing': 'check_breathing_confirm_no_aed',
+
         'intent.cpr.failed': 'cpr_no_aed',
+        'intent.no_breathing': 'cpr_no_aed', // Powrót do RKO/AED jeśli pomyłka
+        'intent.cpr.not_breathing': 'cpr_no_aed',
 
         'None': { // Użytkownik bełkotał lub NLP nic nie dopasowało
           target: 'cpr_no_aed_loop',
@@ -385,6 +393,9 @@ export const cprMachine = createMachine({
     aed_defib: {
       on: {
         'intent.cpr.failed': 'aed_loop',
+        'intent.no_breathing': 'aed_loop', // Powrót do RKO/AED jeśli pomyłka
+        'intent.cpr.not_breathing': 'aed_loop',
+
         'intent.cpr.breathing_restored': 'check_breathing_confirm',
         'intent.breathing': 'check_breathing_confirm',
 
@@ -398,6 +409,9 @@ export const cprMachine = createMachine({
     aed_loop: {
       on: {
         'intent.cpr.failed': 'aed_defib',
+        'intent.no_breathing': 'aed_defib', // Powrót do RKO/AED jeśli pomyłka
+        'intent.cpr.not_breathing': 'aed_defib',
+
         'intent.cpr.breathing_restored': 'check_breathing_confirm',
         'intent.breathing': 'check_breathing_confirm',
 
@@ -413,6 +427,7 @@ export const cprMachine = createMachine({
         'intent.breathing': 'recovery_position_init',
         'intent.cpr.breathing_restored': 'recovery_position_init',
         'intent.no_breathing': 'aed_loop', // Powrót do RKO/AED jeśli pomyłka
+        'intent.cpr.not_breathing': 'aed_loop',
 
         'None': { // Użytkownik bełkotał lub NLP nic nie dopasowało 
           target: 'check_breathing_confirm',
@@ -426,6 +441,7 @@ export const cprMachine = createMachine({
         'intent.breathing': 'recovery_position_final',
         'intent.cpr.breathing_restored': 'recovery_position_final',
         'intent.no_breathing': 'cpr_no_aed_loop', // Powrót do RKO/AED jeśli pomyłka
+        'intent.cpr.not_breathing': 'cpr_no_aed_loop',
         'None': { // Użytkownik bełkotał lub NLP nic nie dopasowało
           target: 'check_breathing_confirm_no_aed',
           actions: () => console.log('Nie zrozumiałem, pytam jeszcze raz o oddychanie') 
