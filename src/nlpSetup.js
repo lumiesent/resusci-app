@@ -14,6 +14,12 @@ export async function setupNLP() {
   nlp.settings.autoSave = false;
   nlp.addLanguage('pl');
 
+  // Potwierdzenia ogólne (dla wszystkich pytań tak/nie)
+  nlp.addDocument('pl', 'Tak', 'intent.confirm.yes');
+  nlp.addDocument('pl', 'TAK', 'intent.confirm.yes');
+  nlp.addDocument('pl', 'Nie', 'intent.confirm.no');
+  nlp.addDocument('pl', 'NIE', 'intent.confirm.no');
+
   /** Scenariusz 2: Alergia
    * ==============================
    *  --- INTENCJE DOT. ALERGII ---
